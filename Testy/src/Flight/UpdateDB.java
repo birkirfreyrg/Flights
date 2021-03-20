@@ -14,7 +14,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY, name varchar(30), email varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] +"' , '" + userInfo[1] + "' )";
+        String sqlInsertingValues = "INSERT INTO User(name, email) SELECT '" + userInfo[0] +"' , '" + userInfo[1] + "' WHERE NOT EXISTS(SELECT 1 FROM User WHERE name = '\" + userInfo[0] +\"' and email = '\" + userInfo[1] + \"'";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
