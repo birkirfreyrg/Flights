@@ -53,7 +53,7 @@ public class UpdateDB {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st = con.createStatement();
-        String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' ";
+        String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' AND email = '"+ wantDeleted[1]+"'";
         st.executeUpdate(sqlDeleting);
         String checking = "SELECT * FROM User";
         ResultSet rs = st.executeQuery(checking);
@@ -90,9 +90,8 @@ public class UpdateDB {
         String[] userInfo2 = new String[2];
         userInfo2[0] = "jonny cash";
         userInfo2[1] = "jonnyjon@gmail.com";
-        insertIntoDB(userInfo1);
-        insertIntoDB(userInfo2);
-        deleteFromDB(userInfo1);
+        deleteFromDB(userInfo2);
+
         
     }
     
