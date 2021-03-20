@@ -31,8 +31,19 @@ public class UpdateDB {
             String email = result.getString("email");
 
             System.out.println(id + " | " + name + " | " + email);
+            
 		
         }
+		try
+	      {
+	        if(con != null)
+	          con.close();
+	      }
+	      catch(SQLException e)
+	      {
+	        // connection close failed.
+	        System.err.println(e);
+	      }
 	}
 	
 	public static void main(String[] args) throws SQLException{
