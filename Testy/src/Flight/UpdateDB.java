@@ -3,8 +3,10 @@ package Flight;
 import java.sql.*;
 
 public class UpdateDB {
-    public static void insertIntoDB(String[] userInfo) throws SQLException {
+    public static int insertIntoDB(String[] userInfo) throws SQLException {
+    	// returns -1 if failed, otherwise returns id
         Connection con = null;
+        int return_id = -1;
         try {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
@@ -12,8 +14,16 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY, name varchar(30), email varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO User(name, email) SELECT '" + userInfo[0] +"' , '" + userInfo[1] + "' WHERE NOT EXISTS(SELECT 1 FROM User WHERE name = '"+ userInfo[0] +"' AND email = '" + userInfo[1] + "')";
-        int rows = st.executeUpdate(sqlInsertingValues);
+        String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] +"' , '" + userInfo[1] + "' )";
+        PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
+        int rows = prsts.executeUpdate();
+        System.out.println("numbers of rows affected: "+rows);
+        ResultSet id_values = prsts.getGeneratedKeys();
+        if (id_values.next()) {
+        	return_id = id_values.getInt(1);
+        }
+        //int rows = st.executeUpdate(sqlInsertingValues);
+        /*
         if (rows > 0) {
             System.out.println("A row created");
         }
@@ -29,6 +39,7 @@ public class UpdateDB {
             System.out.println(id + " | " + name + " | " + email);
         }
         rs.close();
+        */
         
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
@@ -44,7 +55,8 @@ public class UpdateDB {
                 // connection close failed.
                 System.err.println("error closing database; "+e);
               }
-        }        
+        }  
+        return return_id;
     }
     
     public static void deleteFromDB(String[]  wantDeleted) throws SQLException {
@@ -90,7 +102,8 @@ public class UpdateDB {
         String[] userInfo2 = new String[2];
         userInfo2[0] = "jonny cash";
         userInfo2[1] = "jonnyjon@gmail.com";
-        insertIntoDB(userInfo2);
+        int x= insertIntoDB(userInfo2);
+        System.out.println("id="+x);
 
         
     }
