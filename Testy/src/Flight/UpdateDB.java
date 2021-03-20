@@ -12,7 +12,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY, name varchar(30), email varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] +"' , '" + userInfo[1] + "' )";
+        String sqlInsertingValues = "INSERT INTO User(name, email) SELECT '" + userInfo[0] +"' , '" + userInfo[1] + "' WHERE NOT EXISTS(SELECT 1 FROM User WHERE name = '"+ userInfo[0] +"' AND email = '" + userInfo[1] + "')";
         int rows = st.executeUpdate(sqlInsertingValues);
         if (rows > 0) {
             System.out.println("A row created");
@@ -90,7 +90,7 @@ public class UpdateDB {
         String[] userInfo2 = new String[2];
         userInfo2[0] = "jonny cash";
         userInfo2[1] = "jonnyjon@gmail.com";
-        deleteFromDB(userInfo2);
+        insertIntoDB(userInfo2);
 
         
     }
