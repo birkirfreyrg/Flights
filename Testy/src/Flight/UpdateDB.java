@@ -14,9 +14,9 @@ public class UpdateDB {
 		}
 		Statement st = con.createStatement();
 		String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY, name varchar(30), email varchar(30))";
-		st.execute(sqlCreatingTable);
+		st.executeUpdate(sqlCreatingTable);
 		String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] +"' , '" + userInfo[1] + "' )";
-		st.execute(sqlInsertingValues);
+		st.executeUpdate(sqlInsertingValues);
 		
 		String checking = "SELECT * FROM User";
 		ResultSet rs = st.executeQuery(checking);
