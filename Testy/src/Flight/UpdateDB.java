@@ -15,15 +15,24 @@ public class UpdateDB {
 		Statement st = con.createStatement();
 		String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY, name varchar(30), email varchar(30))";
 		st.executeUpdate(sqlCreatingTable);
-		String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] +"' , '" + userInfo[1] + "' )";
-		st.executeUpdate(sqlInsertingValues);
+		System.out.println("table created");
+		String sqlInsertingValues = "INSERT INTO User(name, email) VALUES('" + userInfo[0] + "' , '" + userInfo[1] + "')";
+		int rows = st.executeUpdate(sqlInsertingValues);
+        if (rows > 0) {
+            System.out.println("A row created");
+        }
 		
-		String checking = "SELECT * FROM User";
-		ResultSet rs = st.executeQuery(checking);
-		System.out.println(rs);
+        String sql = "select * from User";
+        
+        ResultSet result = st.executeQuery(sql);
+        while(result.next()) {
+        	int id = result.getInt("id");
+            String name = result.getString("name");
+            String email = result.getString("email");
+
+            System.out.println(id + " | " + name + " | " + email);
 		
-		
-		
+        }
 	}
 	
 	public static void main(String[] args) throws SQLException{
