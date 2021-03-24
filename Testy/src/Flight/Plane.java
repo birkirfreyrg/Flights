@@ -1,6 +1,11 @@
 package Flight;
 
 public class Plane {
+	
+	
+	//flugvél go vroom
+	
+	
 	int seats;
 	int HandicapSupportAvailable;
 	String Airline;
