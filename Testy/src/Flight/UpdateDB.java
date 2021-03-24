@@ -71,6 +71,9 @@ public class UpdateDB {
         String actualName = ""; String actualEmail = "";
 
         ResultSet rsID = st.executeQuery(sqlCheckingID);
+        if (!rsID.isBeforeFirst() ) {    
+            System.out.println("No data"); 
+        } 
         while(rsID.next()) {
         	int id = rsID.getInt("id");
         	System.out.println(id+ " "+ identifier);
@@ -124,6 +127,9 @@ public class UpdateDB {
             String actualName = ""; String actualEmail = "";
             String sqlCheckingID = "SELECT * FROM User";
             ResultSet rsID = st.executeQuery(sqlCheckingID);
+            if (!rsID.isBeforeFirst() ) {    
+                System.out.println("No data"); 
+            } 
             while(rsID.next()) {
             	int id = rsID.getInt("id");
             	if (id == identifier) {
