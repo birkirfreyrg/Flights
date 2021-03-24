@@ -29,6 +29,7 @@ class UserControllerTest {
 
 	@Test
 	public void testUpdateUser() {
+		// create user -> update user -> assert
 		String oldName = "name";
 		String oldEmail = "email@email.org";
 		UserController myUC = new UserController();
@@ -36,6 +37,8 @@ class UserControllerTest {
 		String newName = "nameNew";
 		String newEmail = "emailNew@email.org";
 		myUC.updateUser(myUser, newName, newEmail);
+		assertEquals(newName, myUser.getName());
+		assertEquals(newEmail, myUser.getEmail());
 	}
 
 	@Test
