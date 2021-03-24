@@ -72,9 +72,9 @@ public class UpdateDB {
         while(rsID.next()) {
         	int id = rsID.getInt("id");
         	if (id == identifier) {
-        		String name = rsID.getString("name");
-                String email = rsID.getString("email");
-                if(name == wantDeleted[0] || email == wantDeleted[1]) {
+        		actualName = rsID.getString("name");
+                actualEmail = rsID.getString("email");
+                if(actualName.equals(wantDeleted[0]) && actualEmail.equals(wantDeleted[1])) {
                 	actual = id;
                 }
         	}
@@ -82,6 +82,7 @@ public class UpdateDB {
         if(actual == identifier) {
         	String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' AND email = '"+ wantDeleted[1]+"'";
             st.executeUpdate(sqlDeleting);
+            System.out.println(wantDeleted[0] + " was deleted.");
         }else {
         	System.out.println("can't delete what doesn't exist");
         }
