@@ -172,6 +172,8 @@ public class UpdateDB {
         userInfo2[0] = "Johnny Cash";
         userInfo2[1] = "jonnyjon@gmail.com";
         insertIntoDB(userInfo1);
+        insertIntoDB(userInfo2);
+        deleteFromDB(userInfo2, 2);
         deleteFromDB(userInfo1, 123);
         updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
 
