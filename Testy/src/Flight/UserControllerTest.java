@@ -49,7 +49,7 @@ class UserControllerTest {
 		myUC.deleteUser(myUser);
 	}
 	
-	@Test
+	@Test(expected=IllegalArgumentException.class) // 
 	public void testDeleteUserNotExisting() {
 		// create -> delete user -> delete user (aftur), vantar assert/catch
 		UserController myUC = new UserController();
