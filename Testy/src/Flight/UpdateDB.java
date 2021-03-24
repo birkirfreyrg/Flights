@@ -76,7 +76,6 @@ public class UpdateDB {
         } 
         while(rsID.next()) {
         	int id = rsID.getInt("id");
-        	System.out.println(id+ " "+ identifier);
         	if (id == identifier) {
         		actualName = rsID.getString("name");
                 actualEmail = rsID.getString("email");
@@ -141,6 +140,9 @@ public class UpdateDB {
                         System.out.println(oldName +" was changed to "+newName+ " and the "+oldEmail+" was changed to "+newEmail);
                     }
             	}
+            	else {
+            		System.out.println("User doesnt exist");
+            	}
             }
             String checking = "SELECT * FROM User";
             ResultSet rs = st.executeQuery(checking);
@@ -186,9 +188,9 @@ public class UpdateDB {
         userInfo3[1] = "pluto321@gmail.com";
         
 
-        insertIntoDB(userInfo1);
-        updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
-        
+        deleteFromDB(userInfo1,2);
+        insertIntoDB(userInfo2);
+        updateDB(4, "bsadwad","wdawda","adwadw","dwadwa");
         
 
 
