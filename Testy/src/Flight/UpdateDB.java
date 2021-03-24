@@ -68,7 +68,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCheckingID = "SELECT * FROM User";
         ResultSet rsID = st.executeQuery(sqlCheckingID);
-        int actual = 0; String actualName = ""; String actualEmail = "";
+        String actualName = ""; String actualEmail = "";
         while(rsID.next()) {
         	int id = rsID.getInt("id");
         	if (id == identifier) {
@@ -112,6 +112,56 @@ public class UpdateDB {
         }        
     }
     
+    public static void updateDB(int identifier, String oldName, String oldEmail, String newName, String newEmail) throws SQLException{
+    	Connection con = null;
+    	try {
+    		Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+            Statement st = con.createStatement();
+            String actualName = ""; String actualEmail = "";
+            String sqlCheckingID = "SELECT * FROM User";
+            ResultSet rsID = st.executeQuery(sqlCheckingID);
+            while(rsID.next()) {
+            	int id = rsID.getInt("id");
+            	if (id == identifier) {
+            		actualName = rsID.getString("name");
+                    actualEmail = rsID.getString("email");
+                    if(actualName.equals(oldName) && actualEmail.equals(oldEmail)) {
+                    	String sqlDeleting = "UPDATE User SET name = '" + newName + "', email = '"+newEmail+"' WHERE id = "+ identifier;
+                        st.executeUpdate(sqlDeleting);
+                    }
+            	}
+            }
+            String checking = "SELECT * FROM User";
+            ResultSet rs = st.executeQuery(checking);
+            while(rs.next())
+            {
+            	int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+
+                System.out.println(id + " | " + name + " | " + email);
+            }
+
+            
+            rs.close();
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }        
+    }
+    
 
     
     public static void main(String[] args) throws SQLException{
@@ -119,10 +169,13 @@ public class UpdateDB {
         userInfo1[0] = "Indiana Jones";
         userInfo1[1] = "jones123@gmail.com";
         String[] userInfo2 = new String[2];
-        userInfo2[0] = "jonny cash";
+        userInfo2[0] = "Johnny Cash";
         userInfo2[1] = "jonnyjon@gmail.com";
         insertIntoDB(userInfo1);
-        deleteFromDB(userInfo1, 1);
+        insertIntoDB(userInfo2);
+        deleteFromDB(userInfo2, 2);
+        deleteFromDB(userInfo1, 123);
+        updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
 
 
         
