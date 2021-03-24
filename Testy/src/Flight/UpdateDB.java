@@ -75,16 +75,13 @@ public class UpdateDB {
         		actualName = rsID.getString("name");
                 actualEmail = rsID.getString("email");
                 if(actualName.equals(wantDeleted[0]) && actualEmail.equals(wantDeleted[1])) {
-                	actual = id;
+                	String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' AND email = '"+ wantDeleted[1]+"'";
+                    st.executeUpdate(sqlDeleting);
+                    System.out.println(wantDeleted[0] + " was deleted.");
+                }else {
+                	System.out.println("can't delete what doesn't exist");
                 }
         	}
-        }
-        if(actual == identifier) {
-        	String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' AND email = '"+ wantDeleted[1]+"'";
-            st.executeUpdate(sqlDeleting);
-            System.out.println(wantDeleted[0] + " was deleted.");
-        }else {
-        	System.out.println("can't delete what doesn't exist");
         }
 
         String checking = "SELECT * FROM User";
@@ -115,26 +112,7 @@ public class UpdateDB {
         }        
     }
     
-    public static void updateDB(int id) throws SQLException{
-    	Connection con = null;
-    	try {
-    		
-    	}catch (ClassNotFoundException | SQLException e) {
-    		System.out.println("ClassNotFound & SQL Exception; "+e);
-    	} finally
-    	{
-    		try 
-    		{
-    			if(con != null)
-    				con.close();
-    		}
-    		catch(SQLException e)
-    		{
-    			// connection close failed.
-                System.err.println("error closing database; "+e);
-    		}
-    	}
-    }
+
     
     public static void main(String[] args) throws SQLException{
         String[] userInfo1 = new String[2];
