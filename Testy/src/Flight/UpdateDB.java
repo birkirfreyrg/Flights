@@ -67,14 +67,13 @@ public class UpdateDB {
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st = con.createStatement();
         String sqlCheckingID = "SELECT * FROM User";
-        ResultSet rsID = st.executeQuery(sqlCheckingID);
+        
         String actualName = ""; String actualEmail = "";
-        if(!rsID.next()) {
-        	System.out.println("database is empty");
-        }
-        	
+
+        ResultSet rsID = st.executeQuery(sqlCheckingID);
         while(rsID.next()) {
         	int id = rsID.getInt("id");
+        	System.out.println(id+ " "+ identifier);
         	if (id == identifier) {
         		actualName = rsID.getString("name");
                 actualEmail = rsID.getString("email");
@@ -125,9 +124,6 @@ public class UpdateDB {
             String actualName = ""; String actualEmail = "";
             String sqlCheckingID = "SELECT * FROM User";
             ResultSet rsID = st.executeQuery(sqlCheckingID);
-            if(!rsID.next()) {
-            	System.out.println("database is empty");
-            }
             while(rsID.next()) {
             	int id = rsID.getInt("id");
             	if (id == identifier) {
@@ -182,11 +178,12 @@ public class UpdateDB {
         String[] userInfo3 = new String[2];
         userInfo3[0] = "Mickey Mouse";
         userInfo3[1] = "pluto321@gmail.com";
-        deleteFromDB(userInfo1, 1);
+        
+
         insertIntoDB(userInfo1);
         updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
         
-
+        
 
 
 
