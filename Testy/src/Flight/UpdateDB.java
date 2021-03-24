@@ -115,6 +115,27 @@ public class UpdateDB {
         }        
     }
     
+    public static void updateDB(int id) throws SQLException{
+    	Connection con = null;
+    	try {
+    		
+    	}catch (ClassNotFoundException | SQLException e) {
+    		System.out.println("ClassNotFound & SQL Exception; "+e);
+    	} finally
+    	{
+    		try 
+    		{
+    			if(con != null)
+    				con.close();
+    		}
+    		catch(SQLException e)
+    		{
+    			// connection close failed.
+                System.err.println("error closing database; "+e);
+    		}
+    	}
+    }
+    
     public static void main(String[] args) throws SQLException{
         String[] userInfo1 = new String[2];
         userInfo1[0] = "Indiana Jones";
