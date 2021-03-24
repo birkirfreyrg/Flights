@@ -69,6 +69,10 @@ public class UpdateDB {
         String sqlCheckingID = "SELECT * FROM User";
         ResultSet rsID = st.executeQuery(sqlCheckingID);
         String actualName = ""; String actualEmail = "";
+        if(!rsID.next()) {
+        	System.out.println("database is empty");
+        }
+        	
         while(rsID.next()) {
         	int id = rsID.getInt("id");
         	if (id == identifier) {
@@ -78,10 +82,10 @@ public class UpdateDB {
                 	String sqlDeleting = "DELETE FROM User WHERE name = '"+ wantDeleted[0]+"' AND email = '"+ wantDeleted[1]+"'";
                     st.executeUpdate(sqlDeleting);
                     System.out.println(wantDeleted[0] + " was deleted.");
-                }else {
-                	System.out.println("can't delete what doesn't exist");
                 }
-        	}
+        	}else {
+            	System.out.println("can't delete what doesn't exist");
+            }
         }
 
         String checking = "SELECT * FROM User";
@@ -121,6 +125,9 @@ public class UpdateDB {
             String actualName = ""; String actualEmail = "";
             String sqlCheckingID = "SELECT * FROM User";
             ResultSet rsID = st.executeQuery(sqlCheckingID);
+            if(!rsID.next()) {
+            	System.out.println("database is empty");
+            }
             while(rsID.next()) {
             	int id = rsID.getInt("id");
             	if (id == identifier) {
@@ -129,6 +136,7 @@ public class UpdateDB {
                     if(actualName.equals(oldName) && actualEmail.equals(oldEmail)) {
                     	String sqlDeleting = "UPDATE User SET name = '" + newName + "', email = '"+newEmail+"' WHERE id = "+ identifier;
                         st.executeUpdate(sqlDeleting);
+                        System.out.println(oldName +" was changed to "+newName+ " and the "+oldEmail+" was changed to "+newEmail);
                     }
             	}
             }
@@ -171,11 +179,15 @@ public class UpdateDB {
         String[] userInfo2 = new String[2];
         userInfo2[0] = "Johnny Cash";
         userInfo2[1] = "jonnyjon@gmail.com";
+        String[] userInfo3 = new String[2];
+        userInfo3[0] = "Mickey Mouse";
+        userInfo3[1] = "pluto321@gmail.com";
+        deleteFromDB(userInfo1, 1);
         insertIntoDB(userInfo1);
-        insertIntoDB(userInfo2);
-        deleteFromDB(userInfo2, 2);
-        deleteFromDB(userInfo1, 123);
         updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
+        
+
+
 
 
         
