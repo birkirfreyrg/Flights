@@ -27,8 +27,18 @@ class UserControllerTest {
 	}
 
 	@Test
-	public void testDeleteUser() {
-		fail("Not yet implemented");
+	public void testDeleteUserExisting() {
+		UserController myUC = new UserController();
+		User myUser = myUC.createUser("name","email@email.org");
+		myUC.deleteUser(myUser);
+	}
+	
+	@Test
+	public void testDeleteUserNotExisting() {
+		UserController myUC = new UserController();
+		User myUser = myUC.createUser("name","email@email.org");
+		myUC.deleteUser(myUser);
+		myUC.deleteUser(myUser);
 	}
 
 }
