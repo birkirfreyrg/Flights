@@ -1,6 +1,6 @@
 package Flight;
 
-public class UserMock {
+public class UserMock extends User {
 	
 	private String name;
 	private String email;

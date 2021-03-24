@@ -1,11 +1,12 @@
 package Flight;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import org.junit.*;
 
 class UserControllerTest {
-
+/*
 	@Before
 	public void setUp() {
 		
@@ -15,7 +16,7 @@ class UserControllerTest {
 	public void tearDown() {
 		
 	}
-
+*/
 	@Test
 	public void testCreateUser() {
 		// create user -> assert
