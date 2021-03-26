@@ -21,9 +21,10 @@ public class FlightsMock {
 		ArrayList<Flight> flightList = getFlights();
            for(int i=0;i<flightList.size();i++)  
            {  
-            System.out.println(flightList.get(i).getDestination());
-            System.out.println(flightList.get(i).getCurrentLocation()); 
-            System.out.println(flightList.get(i).getDepartureTime()); 
+            System.out.print(flightList.get(i).getDestination()+", ");
+            System.out.print(flightList.get(i).getCurrentLocation()+", "); 
+            System.out.println(flightList.get(i).getDepartureTime());
+            System.out.println();
            }  
 	}
 }
