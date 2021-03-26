@@ -8,6 +8,7 @@ public class Flight {
 	private String destination;
 	private String currentLocation;
 	private Date departureTime;
+	private Date arrivalTime;
 	
 	public Plane getPlane( ) { return plane; }
 	public void setPlane(Plane newPlane ) { plane = newPlane; }
@@ -21,18 +22,23 @@ public class Flight {
 	public Date getDepartureTime( ) { return departureTime; }
 	public void setDepartureTime(Date newDate ) { departureTime = newDate; }
 	
+	public Date getArrivalTime( ) { return arrivalTime; }
+	public void setArrivalTime(Date newDate ) { arrivalTime = newDate; }
+	
 	Flight() {
 		plane = new Plane();
 		destination = "Þangað";
 		currentLocation = "Hérna";
 		departureTime = new Date(); // Date() = current date, time
+		arrivalTime = new Date();
 	}
 	
-	Flight(Plane newPlane, String newDest, String newLoc, Date newDate) {
+	Flight(Plane newPlane, String newDest, String newLoc, Date depTime, Date arrTime) {
 		plane = newPlane;
 		destination = newDest;
 		currentLocation = newLoc;
-		departureTime = newDate; // Date() = current date, time
+		departureTime = depTime; // Date() = current date, time
+		arrivalTime = arrTime;
 	}
 	
 	Flight(String newDest, String newLoc, Date newDate) {
@@ -40,6 +46,7 @@ public class Flight {
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = newDate; // Date() = current date, time
+		arrivalTime = newDate;
 	}
 	
 	Flight(String newDest, String newLoc) {
@@ -47,6 +54,7 @@ public class Flight {
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = new Date(); // Date() = current date, time
+		arrivalTime = new Date();
 	}
 	
 	/*
