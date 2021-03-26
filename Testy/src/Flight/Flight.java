@@ -35,6 +35,20 @@ public class Flight {
 		departureTime = newDate; // Date() = current date, time
 	}
 	
+	Flight(String newDest, String newLoc, Date newDate) {
+		plane = new Plane();
+		destination = newDest;
+		currentLocation = newLoc;
+		departureTime = newDate; // Date() = current date, time
+	}
+	
+	Flight(String newDest, String newLoc) {
+		plane = new Plane();
+		destination = newDest;
+		currentLocation = newLoc;
+		departureTime = new Date(); // Date() = current date, time
+	}
+	
 	/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
