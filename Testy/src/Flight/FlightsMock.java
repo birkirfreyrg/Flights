@@ -24,7 +24,7 @@ public class FlightsMock {
             System.out.print(flightList.get(i).getDestination()+", ");
             System.out.print(flightList.get(i).getCurrentLocation()+", "); 
             System.out.println(flightList.get(i).getDepartureTime());
-            System.out.println();
+            System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - -");
            }  
 	}
 }
