@@ -8,8 +8,8 @@ public class FlightsMock {
 	public static  ArrayList<Flight> getFlights() {
 		Date date = new Date();
 		ArrayList<Flight> flightList = new ArrayList<Flight>();
-		  Flight f1 = new Flight("Reykjavík", "Akureyri", date); 
-		  Flight f2 = new Flight("Akureyri","Reykjavík", date);
+		Flight f1 = new Flight("Reykjavík", "Akureyri", date); 
+		Flight f2 = new Flight("Akureyri","Reykjavík", date);
 		flightList.add(f1);
 		flightList.add(f2);
 		return flightList;
