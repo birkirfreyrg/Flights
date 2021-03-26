@@ -155,7 +155,7 @@ public class UpdateDB {
                 System.out.println(id + " | " + name + " | " + email);
             }
 
-            
+            // comment
             rs.close();
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
@@ -187,10 +187,9 @@ public class UpdateDB {
         userInfo3[0] = "Mickey Mouse";
         userInfo3[1] = "pluto321@gmail.com";
         
+        insertIntoDB(userInfo1);
+        updateDB(1, userInfo1[0], userInfo1[1] , "Mickey Mouse", "pluto321@gmail.com");
 
-        deleteFromDB(userInfo1,2);
-        insertIntoDB(userInfo2);
-        updateDB(4, "bsadwad","wdawda","adwadw","dwadwa");
         
 
 
