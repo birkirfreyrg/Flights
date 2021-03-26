@@ -19,6 +19,9 @@ public class FlightsMock {
 		for (int i = 0; i < flightList.size(); i++) {
 		    System.out.println(flightList.get(i));
 		}
+		LocalDate myObj = LocalDate.now(); // Create a date object
+	    System.out.println(myObj); // Display the current date
+	  }
 	}
 
 }
