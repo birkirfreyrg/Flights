@@ -9,11 +9,9 @@ public class FlightsMock {
 	public static  List<Flight> getFlights() {
 		List<Flight> flightList = new ArrayList<Flight>();
 		Date date = new Date();
-		int hours = date.getHours();
-		System.out.println(hours);
 		Calendar calendar = Calendar.getInstance();
 	    calendar.setTime(date);
-	    calendar.add(Calendar.HOUR_OF_DAY, hours);
+	    calendar.add(Calendar.HOUR_OF_DAY, 1);
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
 		Flight f1 = new Flight("Reykjavík", "Akureyri", date, dateArrival); 
