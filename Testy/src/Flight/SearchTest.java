@@ -56,11 +56,7 @@ class SearchTest {
 	
 	@Test
 	public void testReverseDate(Flight flight) {
-		Date date = new Date();
-		Date dateArrival = new Date();
-		date = flight.getDepartureTime();
-		dateArrival = flight.getArrivalTime();
-		assert
+		assertThrows(IllegalArgumentException.class, () -> Search.checkReversedDate());
 	}
 	
 	

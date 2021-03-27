@@ -20,7 +20,7 @@ public class Search {
 		}*/
 	}
 	
-	public static void checkDate() {
+	public static void checkReversedDate() {
 		
 	}
 	
