@@ -24,6 +24,10 @@ public class Search {
 		
 	}
 	
+	public static void checkSameDate() {
+		
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Virkar??");
 		

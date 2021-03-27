@@ -46,12 +46,21 @@ class SearchTest {
 	}
 	
 	@Test
+	public void testSameDate(Flight flight) {
+		Date date = new Date();
+		Date dateArrival = new Date();
+		date = flight.getDepartureTime();
+		dateArrival = flight.getArrivalTime();
+		assertEquals(date, dateArrival);
+	}
+	
+	@Test
 	public void testReverseDate(Flight flight) {
 		Date date = new Date();
 		Date dateArrival = new Date();
 		date = flight.getDepartureTime();
 		dateArrival = flight.getArrivalTime();
-		assert??
+		assert
 	}
 	
 	
