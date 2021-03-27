@@ -6,7 +6,7 @@ public class FlightsMock {
 	
 	
 	// returns 2x flights
-	public static  List<Flight> getFlights() {
+	public static  List<Flight> getFlights(String search) {
 		List<Flight> flightList = new ArrayList<Flight>();
 		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -23,7 +23,7 @@ public class FlightsMock {
 	}
 
 	public static void main(String[] args) {
-		List<Flight> flightList = getFlights();
+		List<Flight> flightList = getFlights("");
            for(int i=0;i<flightList.size();i++)  
            {
         	System.out.print(flightList.get(i).getCurrentLocation()+" til "); 

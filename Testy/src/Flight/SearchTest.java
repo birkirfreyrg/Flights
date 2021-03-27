@@ -23,8 +23,8 @@ class SearchTest {
 	
 	@Test
 	public void returnMatches() {
-		List<Flight> actualValue = Search.returnMatches("Reykjavík", "Akureyri");
-		List<Flight> expectedValue = FlightsMock.getFlights();
+		List<Flight> actualValue = Search.returnMatches("from=Reykjavík;to=Akureyri");
+		List<Flight> expectedValue = FlightsMock.getFlights("");
 		assertEquals(expectedValue, actualValue, "search failed ");
 		
 	}
@@ -33,6 +33,11 @@ class SearchTest {
 	@Test
 	public void testValidateInt() {
 		assertThrows(IllegalArgumentException.class, () -> Search.validateText(123));
+	}
+	
+	@Test
+	public void testValidateCorrectString() {
+		assertEquals(Search.validateText("from=Reykjavík;to=Akureyri"), true);
 	}
 	
 	@Test

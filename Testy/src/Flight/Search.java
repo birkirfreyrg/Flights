@@ -8,7 +8,7 @@ public class Search {
 		// asdasd 
 	}
 	
-	public static List<Flight> returnMatches(String currentLocation, String endLocation) {
+	public static List<Flight> returnMatches(String search) {
 		
 	}
 	
