@@ -8,7 +8,7 @@ public class Search {
 		// asdasd 
 	}
 	
-	public static ArrayList<String> returnMatches(String currentLocation, String endLocation, ) {
+	public static ArrayList<String> returnMatches(String currentLocation, String endLocation) {
 		
 	}
 	
