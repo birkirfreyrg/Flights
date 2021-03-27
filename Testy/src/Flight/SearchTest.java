@@ -1,6 +1,7 @@
 package Flight;
 
 import org.junit.*;
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,11 @@ class SearchTest {
 	@Test
 	public void testValidateInt() {
 		assertThrows(IllegalArgumentException.class, () -> Search.validateText(123));
+	}
+	
+	@Test
+	public void testNullCase() {
+		assertNotNull(Search.nullToEmpty("grindavík"));
 	}
 
 }
