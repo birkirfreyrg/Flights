@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class SearchTest {
 
+	/*
 	@Before
 	public void setUp() {
 		fail("Not yet implemented");
@@ -16,12 +17,11 @@ class SearchTest {
 	public void tearDown() {
 		fail("Not yet implemented");
 	}
+	*/
 	
 	@Test
-	public void testSomeBehavior() {
-		fail("Not yet implemented");
-		
-		//assert ();
+	public void testValidateInt() {
+		assertThrows(IllegalArgumentException.class, () -> Search.validateText(123));
 	}
 
 }
