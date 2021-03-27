@@ -13,6 +13,10 @@ public class FlightsMock {
 		ArrayList<Flight> flightList = new ArrayList<Flight>();
 		Date d1 = sdformat.parse("2021-03-27");
 		Date d2 = sdformat.parse("2021-04-10");
+		System.out.println(sdformat.format(d1));
+		System.out.println();
+	    System.out.println(sdformat.format(d2));
+	    System.out.println();
 		Flight f1 = new Flight("Reykjavík", "Akureyri", d1); 
 		Flight f2 = new Flight("Akureyri","Reykjavík", d2);
 		flightList.add(f1);
