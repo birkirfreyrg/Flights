@@ -20,13 +20,22 @@ class SearchTest {
 	*/
 	
 	@Test
+	public void returnMatches() {
+		List<Flight> actualValue = Search.returnMatches("Reykjavik", "Akureyri");
+		List<Flight> expectedValue = FlightsMock.getFlights();
+		assertEquals(expectedValue, actualValue, "search failed ");
+		
+	}
+	
+	
+	@Test
 	public void testValidateInt() {
 		assertThrows(IllegalArgumentException.class, () -> Search.validateText(123));
 	}
 	
 	@Test
 	public void testNullCase() {
-		assertNotNull(Search.nullToEmpty("grindavík"));
+		assertNotNull(Search.nullToEmpty("grindavï¿½k"));
 	}
 	
 	
