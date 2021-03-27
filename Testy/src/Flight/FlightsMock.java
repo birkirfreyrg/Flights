@@ -10,15 +10,10 @@ public class FlightsMock {
 	// returns 2x flights
 	public static  List<Flight> getFlights() throws ParseException {
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		ArrayList<Flight> flightList = new ArrayList<Flight>();
-		Date d1 = sdformat.parse("2021-03-27");
-		Date d2 = sdformat.parse("2021-04-10");
-		System.out.println(sdformat.format(d1));
-		System.out.println();
-	    System.out.println(sdformat.format(d2));
-	    System.out.println();
-		Flight f1 = new Flight("Reykjavík", "Akureyri", d1); 
-		Flight f2 = new Flight("Akureyri","Reykjavík", d2);
+		List<Flight> flightList = new ArrayList<Flight>();
+		Date date = new Date();
+		Flight f1 = new Flight("Reykjavík", "Akureyri", date); 
+		Flight f2 = new Flight("Akureyri","Reykjavík", date);
 		flightList.add(f1);
 		flightList.add(f2);
 		return flightList;
