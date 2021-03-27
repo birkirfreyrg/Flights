@@ -51,7 +51,7 @@ class SearchTest {
 		Date dateArrival = new Date();
 		date = flight.getDepartureTime();
 		dateArrival = flight.getArrivalTime();
-		assertTrue(date.equals(dateArrival));
+		assert??
 	}
 	
 	
