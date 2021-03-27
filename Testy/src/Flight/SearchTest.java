@@ -1,7 +1,6 @@
 package Flight;
 
 import org.junit.*;
-import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -38,5 +37,7 @@ class SearchTest {
 	public void testNullCase() {
 		assertNotNull(Search.nullToEmpty("grindav�k"));
 	}
+	
+	
 
 }

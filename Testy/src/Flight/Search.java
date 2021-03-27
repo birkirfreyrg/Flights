@@ -12,6 +12,14 @@ public class Search {
 		
 	}
 	
+	public static List<Flight> nullToEmpty(List<Flight> results) {
+		if(/*not empty*/) {
+			return results;
+		}else {
+			return Collections.emptyList();
+		}
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Virkar??");
 		
