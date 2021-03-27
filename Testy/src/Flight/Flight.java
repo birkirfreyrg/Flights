@@ -41,6 +41,14 @@ public class Flight {
 		arrivalTime = arrTime;
 	}
 	
+	Flight(String newDest, String newLoc, Date depTime, Date arrTime) {
+		plane = new Plane();
+		destination = newDest;
+		currentLocation = newLoc;
+		departureTime = depTime; // Date() = current date, time
+		arrivalTime = arrTime;
+	}
+	
 	Flight(String newDest, String newLoc, Date newDate) {
 		plane = new Plane();
 		destination = newDest;
