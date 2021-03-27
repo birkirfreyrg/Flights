@@ -40,6 +40,11 @@ class SearchTest {
 		assertNotNull(Search.nullToEmpty("grindavík"));
 	}
 	
+	@Test
+	public void testSearchNull() {
+		assertThrows(IllegalArgumentException.class, () -> Search.returnMatches());
+	}
+	
 	
 
 }
