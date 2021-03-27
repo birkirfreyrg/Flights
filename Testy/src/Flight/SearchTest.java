@@ -3,7 +3,7 @@ package Flight;
 import org.junit.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +43,15 @@ class SearchTest {
 	@Test
 	public void testSearchNull() {
 		assertThrows(IllegalArgumentException.class, () -> Search.returnMatches());
+	}
+	
+	@Test
+	public void testReverseDate(Flight flight) {
+		Date date = new Date();
+		Date dateArrival = new Date();
+		date = flight.getDepartureTime();
+		dateArrival = flight.getArrivalTime();
+		assertTrue(date.equals(dateArrival));
 	}
 	
 	

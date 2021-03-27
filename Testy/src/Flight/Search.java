@@ -12,12 +12,16 @@ public class Search {
 		
 	}
 	
-	public static List<Flight> nullToEmpty(List<Flight> results) {
-		if(/*not empty*/) {
-			return results;
+	public static List<Flight> nullToEmpty(String search) {
+		/*if(not empty) {
+			return result;
 		}else {
 			return Collections.emptyList();
-		}
+		}*/
+	}
+	
+	public static void checkDate() {
+		
 	}
 	
 	public static void main(String[] args) {
