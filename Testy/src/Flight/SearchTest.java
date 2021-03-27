@@ -23,7 +23,7 @@ class SearchTest {
 	
 	@Test
 	public void returnMatches() {
-		List<Flight> actualValue = Search.returnMatches("Reykjavik", "Akureyri");
+		List<Flight> actualValue = Search.returnMatches("Reykjavík", "Akureyri");
 		List<Flight> expectedValue = FlightsMock.getFlights();
 		assertEquals(expectedValue, actualValue, "search failed ");
 		
@@ -37,7 +37,7 @@ class SearchTest {
 	
 	@Test
 	public void testNullCase() {
-		assertNotNull(Search.nullToEmpty("grindavï¿½k"));
+		assertNotNull(Search.nullToEmpty("grindavík"));
 	}
 	
 	
