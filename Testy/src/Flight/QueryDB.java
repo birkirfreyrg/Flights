@@ -24,7 +24,6 @@ public class QueryDB {
         rs.close();
         return flightList;
         
-        }finally
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
         } finally
