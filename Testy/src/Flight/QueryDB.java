@@ -6,14 +6,13 @@ import java.util.List;
 public class QueryDB {
 	public static List<Flight> selectFromDB(String currentLoc, String destination) throws SQLException {
         Connection con = null;
-        
+        List<Flight> flightList = new ArrayList<Flight>();
         try {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st2 = con.createStatement();
         String scanning = "SELECT * FROM Flight WHERE currentLoc = '"+ currentLoc +"' AND destination = '"+ destination + "'";
         ResultSet rs = st2.executeQuery(scanning);
-        List<Flight> flightList = new ArrayList<Flight>();
         if (!rs.isBeforeFirst() ) {    
             System.out.println("No data"); 
         } 
@@ -22,9 +21,8 @@ public class QueryDB {
         	flightList.add(f);
         }
         rs.close();
-        return flightList;
         
-        }finally
+        
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
         } finally
@@ -39,14 +37,16 @@ public class QueryDB {
                 // connection close failed.
                 System.err.println("error closing database; "+e);
               }
-        }        
+        }    
+        return flightList;
     }
 
 public static void main(String[] args) throws SQLException{
 	
 	List<Flight> flightList = new ArrayList<Flight>();
 	flightList = selectFromDB("Reykjavik", "Akureyri");
-	
+	Flight f = flightList.get(0);
+	System.out.print(f.toString());
 }
 
 }
