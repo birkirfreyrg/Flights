@@ -29,6 +29,11 @@ public class Flight {
 	public Date getArrivalTime( ) { return arrivalTime; }
 	public void setArrivalTime(Date newDate ) { arrivalTime = newDate; }
 	
+	public String toString() {
+		String string = String.format("id: %d, to: %s, from: %s, leaves at %t, arrives at %t", id, destination, currentLocation, departureTime, arrivalTime);
+		return string;
+	}
+	
 	Flight() {
 		id = -1;
 		plane = new Plane();
