@@ -15,12 +15,11 @@ public class FlightController  {
 	}
 	
 	public void cancelFlight(int id) {
-		// TODO: create function
-		/*
-		 * for i in flights:
-		 * 		if i.id == id:
-		 * 			flights.remove(i)
-		 * 			break
-		 */
+		for (Flight flight : flights) {
+			if (flight.getID() == id) {
+				flights.remove(flight);
+				break;
+			}
+		}
 	}
 }
