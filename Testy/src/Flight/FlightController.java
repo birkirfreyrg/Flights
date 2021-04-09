@@ -1,22 +1,26 @@
 package Flight;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class FlightController  {
-	private Flight[] flights;
+	private List<Flight> flights = new ArrayList<Flight>();
 	
-	public Flight[] getFlights() { return flights; } // á að returna list<Flight> ?
-	public void setFlights(Flight[] newflights) { flights = newflights; }
+	public List<Flight> getFlights() { return flights; } 
+	//public void setFlights(Flight[] newflights) { flights = newflights; }
 	
-	public void createFlight() { // accepts args[]
-		// TODO: create function
-		/*
-		Flight flight = new Flight(args);
-		flights.append(Flight);
-		*/
+	public void createFlight(Flight newflight) {
+		flights.add(newflight);
 		
 	}
 	
 	public void cancelFlight(int id) {
 		// TODO: create function
+		/*
+		 * for i in flights:
+		 * 		if i.id == id:
+		 * 			flights.remove(i)
+		 * 			break
+		 */
 	}
 }
