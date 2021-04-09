@@ -41,4 +41,12 @@ public class QueryDB {
               }
         }        
     }
+
+public static void main(String[] args) throws SQLException{
+	
+	List<Flight> flightList = new ArrayList<Flight>();
+	flightList = selectFromDB("Reykjavik", "Akureyri");
+	
+}
+
 }
