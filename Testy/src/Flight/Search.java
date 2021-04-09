@@ -5,6 +5,7 @@ import java.util.*;
 public class Search {
 	
 	public static boolean validateText(String searchText) {	
+		
 		int x = (searchText.length());
 		if ( (x==0)||(x>30) )  {
 			return false;
@@ -33,7 +34,7 @@ public class Search {
 	}
 	
 	public static void main(String[] args) {
-		boolean thepriceisright = validateText("virkar þessi strengur?");
+		boolean thepriceisright = validateText("Húnavatnasýsla");
 		System.out.println(thepriceisright);
 		
 	}
