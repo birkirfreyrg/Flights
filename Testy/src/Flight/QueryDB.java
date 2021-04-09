@@ -18,9 +18,13 @@ public class QueryDB {
             System.out.println("No data"); 
         } 
         while(rs.next()) {
-        	
+        	Flight f = new Flight(rs.getString("currentLoc"),rs.getString("destination"));
+        	flightList.add(f);
         }
-        }
+        rs.close();
+        return flightList;
+        
+        }finally
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
         } finally
