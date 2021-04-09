@@ -15,6 +15,11 @@ public class Location {
 	Location(String newName) {
 		name = newName;
 	}
+	
+	public String toString() {
+		String string = String.format("Location: %s", name);
+		return string;
+	}
 
 	public static void main(String[] args) {
 		Location Akureyri = new Location("Akureyri");
