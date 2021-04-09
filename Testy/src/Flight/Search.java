@@ -4,8 +4,12 @@ import java.util.*;
 
 public class Search {
 	
-	public static boolean validateText(String searchText) {
-		// asdasd 
+	public static boolean validateText(String searchText) {	
+		int x = (searchText.length());
+		if ( (x==0)||(x>30) )  {
+			return false;
+		}
+		return true;
 	}
 	
 	public static List<Flight> returnMatches(String search) {
@@ -29,7 +33,8 @@ public class Search {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Virkar??");
+		boolean thepriceisright = validateText("virkar þessi strengur?");
+		System.out.println(thepriceisright);
 		
 	}
 }
