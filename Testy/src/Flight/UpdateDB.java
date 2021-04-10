@@ -243,7 +243,7 @@ public class UpdateDB {
 	    calendar.add(Calendar.HOUR_OF_DAY, 1);
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
-    	insertIntoFlightDB("Reykjavik", "Akureyri", date, dateArrival);
+    	insertIntoFlightDB("Reykjavik", "Olafsvik", date, dateArrival);
 
         
     }

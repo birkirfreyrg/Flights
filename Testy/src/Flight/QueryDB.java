@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueryDB {
-	public static List<Flight> selectFromDB(String currentLoc, String destination) throws SQLException {
+	public static List<Flight> selectFromDB(String destination, String currentLoc) throws SQLException {
         Connection con = null;
         List<Flight> flightList = new ArrayList<Flight>();
         try {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st2 = con.createStatement();
-        String scanning = "SELECT * FROM Flight WHERE currentLoc = '"+ currentLoc +"' AND destination = '"+ destination + "'";
+        String scanning = "SELECT * FROM Flight WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
         ResultSet rs = st2.executeQuery(scanning);
         if (!rs.isBeforeFirst() ) {    
             System.out.println("No data"); 
         } 
         while(rs.next()) {
-        	Flight f = new Flight(rs.getString("currentLoc"),rs.getString("destination"));
+        	Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"));
         	flightList.add(f);
         }
         rs.close();
@@ -44,7 +44,7 @@ public class QueryDB {
 public static void main(String[] args) throws SQLException{
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromDB("Reykjavik", "Akureyri");
+	flightList = selectFromDB("Akureyri", "Reykjavik");
 	Flight f = flightList.get(0);
 	System.out.print(f.toString());
 }

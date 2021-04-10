@@ -1,5 +1,6 @@
 package Flight;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class Search {
@@ -13,8 +14,8 @@ public class Search {
 		return true;
 	}
 	
-	public List<Flight> returnMatches(String search) {
-		
+	public List<Flight> returnMatches(String destination, String currentloc) throws SQLException {
+		return QueryDB.selectFromDB(destination, currentloc);	
 	}
 	
 	public List<Flight> nullToEmpty(List<Flight> searchResult) {
@@ -34,7 +35,7 @@ public class Search {
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		boolean thepriceisright = validateText("Húnavatnasýsla");
 		System.out.println(thepriceisright);
 		
@@ -43,5 +44,7 @@ public class Search {
 		//fakeList.add(fakeFlightData);
 		Search ts = new Search();
 		System.out.println(ts.nullToEmpty(fakeList));
+		
+		System.out.print(ts.returnMatches("Olafsvik", "Reykjavik").toString());
 	}
 }
