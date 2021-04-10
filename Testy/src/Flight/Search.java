@@ -13,16 +13,17 @@ public class Search {
 		return true;
 	}
 	
-	public static List<Flight> returnMatches(String search) {
+	public List<Flight> returnMatches(String search) {
 		
 	}
 	
-	public static List<Flight> nullToEmpty(String search) {
-		/*if(not empty) {
-			return result;
+	public List<Flight> nullToEmpty(List<Flight> searchResult) {
+		boolean empty = searchResult.isEmpty();
+		if(!empty) {
+			return searchResult;
 		}else {
 			return Collections.emptyList();
-		}*/
+		}
 	}
 	
 	public static void checkReversedDate() {
@@ -37,5 +38,10 @@ public class Search {
 		boolean thepriceisright = validateText("Húnavatnasýsla");
 		System.out.println(thepriceisright);
 		
+		List<Flight> fakeList = new ArrayList<Flight>();
+		//Flight fakeFlightData = new Flight("Ak", "rvk");
+		//fakeList.add(fakeFlightData);
+		Search ts = new Search();
+		System.out.println(ts.nullToEmpty(fakeList));
 	}
 }
