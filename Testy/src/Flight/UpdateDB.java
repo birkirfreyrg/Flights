@@ -61,7 +61,7 @@ public class UpdateDB {
         return return_id;
     }
     
-    public static int insertIntoFlightDB(String currentLoc, String destination, Date departureTime, Date arrivalTime) throws SQLException {
+    public static int insertIntoFlightDB(String destination, String currentLoc, Date departureTime, Date arrivalTime) throws SQLException {
     	// returns -1 if failed, otherwise returns id
         Connection con = null;
         int return_id = -1;
@@ -72,7 +72,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Flight(id INTEGER PRIMARY KEY, currentLoc varchar(30), destination varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Flight(currentLoc, destination, departureTime, arrivalTime) Values( '"+ currentLoc +"', '"+ destination +"', '"+departureTime+"', '"+arrivalTime+"')";
+        String sqlInsertingValues = "INSERT INTO Flight(destination, currentLoc, departureTime, arrivalTime) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
@@ -243,7 +243,7 @@ public class UpdateDB {
 	    calendar.add(Calendar.HOUR_OF_DAY, 1);
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
-    	insertIntoFlightDB("Reykjavik", "Olafsvik", date, dateArrival);
+    	insertIntoFlightDB("Reykjavik", "Akureyri", date, dateArrival);
 
         
     }
