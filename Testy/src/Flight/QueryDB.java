@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class QueryDB {
 	public static List<Flight> selectFromDB(String destination, String currentLoc) throws SQLException, ParseException {
@@ -22,8 +23,8 @@ public class QueryDB {
         while(rs.next()) {
             String departureTime = rs.getString("departureTime");
             String arrivalTime = rs.getString("arrivalTime");       
-            DT = (Date) new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss").parse(departureTime);
-            AT = (Date) new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss").parse(arrivalTime);
+            DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(departureTime);
+            AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(arrivalTime);
 
             Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
             flightList.add(f);
