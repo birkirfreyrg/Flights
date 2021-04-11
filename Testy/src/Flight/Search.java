@@ -1,6 +1,7 @@
 package Flight;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class Search {
@@ -14,7 +15,7 @@ public class Search {
 		return true;
 	}
 	
-	public List<Flight> returnMatches(String destination, String currentloc) throws SQLException {
+	public List<Flight> returnMatches(String destination, String currentloc) throws SQLException, ParseException {
 		return QueryDB.selectFromDB(destination, currentloc);	
 	}
 	
@@ -35,8 +36,8 @@ public class Search {
 		
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		boolean thepriceisright = validateText("Húnavatnasýsla");
+	public static void main(String[] args) throws SQLException, ParseException {
+		boolean thepriceisright = validateText("Hï¿½navatnasï¿½sla");
 		System.out.println(thepriceisright);
 		
 		List<Flight> fakeList = new ArrayList<Flight>();
@@ -45,6 +46,6 @@ public class Search {
 		Search ts = new Search();
 		System.out.println(ts.nullToEmpty(fakeList));
 		
-		System.out.print(ts.returnMatches("Olafsvik", "Reykjavik").toString());
+		System.out.print(ts.returnMatches("Reykjavik", "Akureyri").toString());
 	}
 }
