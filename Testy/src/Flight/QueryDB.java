@@ -27,6 +27,7 @@ public class QueryDB {
             AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(arrivalTime);
 
             Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
+            f.setID(rs.getInt("id"));
             flightList.add(f);
         }
         rs.close();
