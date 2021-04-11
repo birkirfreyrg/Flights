@@ -48,6 +48,7 @@ public class QueryDB {
               }
         }    
         return flightList;
+        
     }
 
 public static void main(String[] args) throws SQLException, ParseException{
