@@ -1,12 +1,15 @@
 package Flight;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QueryDB {
-	public static List<Flight> selectFromDB(String destination, String currentLoc) throws SQLException {
+	public static List<Flight> selectFromDB(String destination, String currentLoc) throws SQLException, ParseException {
         Connection con = null;
         List<Flight> flightList = new ArrayList<Flight>();
+        Date AT = null;Date DT = null;
         try {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
@@ -17,8 +20,13 @@ public class QueryDB {
             System.out.println("No data"); 
         } 
         while(rs.next()) {
-        	Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), rs.getDate("departureTime"), rs.getDate("arrivalTime"));
-        	flightList.add(f);
+            String departureTime = rs.getString("departureTime");
+            String arrivalTime = rs.getString("arrivalTime");       
+            DT = (Date) new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss").parse(departureTime);
+            AT = (Date) new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss").parse(arrivalTime);
+
+            Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
+            flightList.add(f);
         }
         rs.close();
         
@@ -41,7 +49,7 @@ public class QueryDB {
         return flightList;
     }
 
-public static void main(String[] args) throws SQLException{
+public static void main(String[] args) throws SQLException, ParseException{
 	
 	List<Flight> flightList = new ArrayList<Flight>();
 	flightList = selectFromDB("Akureyri", "Reykjavik");
