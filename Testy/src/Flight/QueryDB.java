@@ -55,7 +55,7 @@ public class QueryDB {
 public static void main(String[] args) throws SQLException, ParseException{
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromDB("Akureyri", "Reykjavik");
+	flightList = selectFromDB("Reykjavik", "Akureyri");
 	Flight f = flightList.get(0);
 	System.out.print(f.toString());
 }
