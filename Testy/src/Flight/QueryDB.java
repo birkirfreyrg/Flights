@@ -17,7 +17,7 @@ public class QueryDB {
             System.out.println("No data"); 
         } 
         while(rs.next()) {
-        	Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), rs.getDate("arrivalTime"), rs.getDate("departureTime"));
+        	Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), rs.getDate("departureTime"), rs.getDate("arrivalTime"));
         	flightList.add(f);
         }
         rs.close();
