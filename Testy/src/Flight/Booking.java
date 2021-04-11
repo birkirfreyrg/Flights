@@ -4,7 +4,7 @@ package Flight;
 public class Booking {
 	private int id;
 	private Flight flight;
-	private String passanger;
+	private String passenger;
 	private Boolean handicap;
 	
 	public int getID( ) { return id; }
@@ -13,8 +13,8 @@ public class Booking {
 	public Flight getFlight( ) { return flight; }
 	public void setFlight(Flight newFlight ) { flight = newFlight; }
 	
-	public String getPassanger( ) { return passanger; }
-	public void setPassanger(String newPassanger ) { passanger= newPassanger; }
+	public String getpassenger( ) { return passenger; }
+	public void setpassenger(String newpassenger ) { passenger= newpassenger; }
 	
 	public Boolean checkHandicap( ) { return handicap; }
 	public void setHandicap(Boolean handicapp ) { handicap = handicapp; }
@@ -22,19 +22,23 @@ public class Booking {
 	Booking() {
 		id = -1;
 		flight = new Flight();
-		passanger = "john doe";
+		passenger = "john doe";
 		handicap = false;
 	}
 	
-	Booking(Flight newFlight, String newPassanger, Boolean newHandicap){
+	Booking(Flight newFlight, String newpassenger, Boolean newHandicap){
 		flight = newFlight;
-		passanger = newPassanger;
+		passenger = newpassenger;
 		newHandicap = handicap;
 	}
-	Booking(Flight newFlight, String newPassanger){
+	Booking(Flight newFlight, String newpassenger){
 		flight = newFlight;
-		passanger = newPassanger;
+		passenger = newpassenger;
 		handicap = false;
 				
+	}
+	public static void main(String args[]) {
+		Booking book = new Booking();
+		
 	}
 }
