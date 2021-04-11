@@ -18,7 +18,7 @@ public class QueryDB {
         String scanning = "SELECT * FROM Flight WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
         ResultSet rs = st2.executeQuery(scanning);
         if (!rs.isBeforeFirst() ) {    
-            System.out.println("No data"); 
+            System.out.println("Could not find flight"); 
         } 
         while(rs.next()) {
             String departureTime = rs.getString("departureTime");
@@ -55,7 +55,7 @@ public class QueryDB {
 public static void main(String[] args) throws SQLException, ParseException{
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromDB("Akureyri", "Reykjavik");
+	flightList = selectFromDB("Reykjavik", "Akureyri");
 	Flight f = flightList.get(0);
 	System.out.print(f.toString());
 }
