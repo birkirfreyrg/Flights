@@ -37,8 +37,8 @@ public class Flight {
 	Flight() {
 		id = -1;
 		plane = new Plane();
-		destination = "Þangað";
-		currentLocation = "Hérna";
+		destination = "ÃžangaÃ°";
+		currentLocation = "HÃ©rna";
 		departureTime = new Date(); // Date() = current date, time
 		arrivalTime = new Date();
 	}
