@@ -1,5 +1,6 @@
 package Flight;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 public class Flight {
@@ -85,9 +86,9 @@ public class Flight {
 
 	}
 	*/
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException {
 		Flight flight = new Flight();
-		System.out.println(flight.toString());
+		System.out.println(new String(flight.toString().getBytes("UTF-8"),"UTF-8"));
 		
 	}
 }
