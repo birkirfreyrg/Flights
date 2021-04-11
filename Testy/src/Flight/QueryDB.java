@@ -18,7 +18,7 @@ public class QueryDB {
         String scanning = "SELECT * FROM Flight WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
         ResultSet rs = st2.executeQuery(scanning);
         if (!rs.isBeforeFirst() ) {    
-            System.out.println("No data"); 
+            System.out.println("Could not find flight"); 
         } 
         while(rs.next()) {
             String departureTime = rs.getString("departureTime");
