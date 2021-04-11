@@ -175,6 +175,50 @@ public class UpdateDB {
         }        
     }
     
+    public static void deleteFromFlightDB(int identifier) throws SQLException {
+        Connection con = null;
+        
+        try {
+        Class.forName("org.sqlite.JDBC");
+        con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+        Statement st = con.createStatement();
+        String sqlCheckingID = "SELECT * FROM Flight";
+
+        ResultSet rsID = st.executeQuery(sqlCheckingID);
+        if (!rsID.isBeforeFirst() ) {    
+            System.out.println("No data"); 
+        } 
+        while(rsID.next()) {
+        	int id = rsID.getInt("id");
+        	if (id == identifier) {
+                	String sqlDeleting = "DELETE FROM Flight WHERE id = '"+identifier+"'";
+                    st.executeUpdate(sqlDeleting);
+                    System.out.println(identifier + " was deleted.");
+                }
+        	else{
+            	System.out.println("can't delete what doesn't exist");
+            }
+        }
+
+
+        rsID.close();
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }        
+    }
+    
     public static void updateDB(int identifier, String oldName, String oldEmail, String newName, String newEmail) throws SQLException{
     	Connection con = null;
     	try {
@@ -244,7 +288,6 @@ public class UpdateDB {
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
     	insertIntoFlightDB("Reykjavik", "Akureyri", date, dateArrival);
-
         
     }
     
