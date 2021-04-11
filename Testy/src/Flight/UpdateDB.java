@@ -70,7 +70,7 @@ public class UpdateDB {
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         
         Statement st = con.createStatement();
-        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Flight(id INTEGER PRIMARY KEY, currentLoc varchar(30), destination varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
+        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Flight(id INTEGER PRIMARY KEY, destination varchar(30), currentLoc varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
         st.executeUpdate(sqlCreatingTable);
         String sqlInsertingValues = "INSERT INTO Flight(destination, currentLoc, departureTime, arrivalTime) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
