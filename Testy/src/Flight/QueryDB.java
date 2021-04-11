@@ -4,13 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Date;
 
 public class QueryDB {
 	public static List<Flight> selectFromDB(String destination, String currentLoc) throws SQLException, ParseException {
         Connection con = null;
         List<Flight> flightList = new ArrayList<Flight>();
-        Date AT = null;Date DT = null;
         try {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
@@ -22,9 +22,10 @@ public class QueryDB {
         } 
         while(rs.next()) {
             String departureTime = rs.getString("departureTime");
-            String arrivalTime = rs.getString("arrivalTime");       
-            DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(departureTime);
-            AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(arrivalTime);
+            String arrivalTime = rs.getString("arrivalTime");
+            System.out.println(departureTime);
+            Date DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(departureTime);
+            Date AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(arrivalTime);
 
             Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
             f.setID(rs.getInt("id"));
