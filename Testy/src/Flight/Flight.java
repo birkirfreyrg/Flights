@@ -30,7 +30,7 @@ public class Flight {
 	public void setArrivalTime(Date newDate ) { arrivalTime = newDate; }
 	
 	public String toString() {
-		String string = String.format("id: %d, to: %s, from: %s, leaves at %tc, arrives at %tc", id, destination, currentLocation, departureTime, arrivalTime);
+		String string = String.format("id: %d, to: %s, from: %s, leaves at %tc, arrives at %tc\n", id, destination, currentLocation, departureTime, arrivalTime);
 		return string;
 	}
 	
