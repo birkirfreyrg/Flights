@@ -19,6 +19,11 @@ public class Booking {
 	public Boolean checkHandicap( ) { return handicap; }
 	public void setHandicap(Boolean handicapp ) { handicap = handicapp; }
 	
+	public String toString() {
+		String string = String.format("Booking id: %d\nFlight Info: %sPassenger: %s\nRequires handicap support: %b\n", id, flight, passenger, handicap);
+		return string;
+	}
+	
 	Booking() {
 		id = -1;
 		flight = new Flight();

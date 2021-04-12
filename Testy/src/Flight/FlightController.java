@@ -1,6 +1,10 @@
 package Flight;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class FlightController  {
@@ -9,9 +13,23 @@ public class FlightController  {
 	public List<Flight> getFlights() { return flights; } 
 	//public void setFlights(Flight[] newflights) { flights = newflights; }
 	
+	public List<Flight> getAllFlights() throws SQLException, ParseException {
+		flights = QueryDB.selectAllFlightsFromDB();
+		return flights;
+	}
+	
 	public void createFlight(Flight newflight) {
 		flights.add(newflight);
-		
+	}
+	
+	public Flight getFlightById(int id) {
+		for (Flight flight : flights) {
+			if (flight.getID() == id) {
+				return flight;
+			}
+		}
+		System.out.format("No flight with id number: %d\n", id);
+		return null;
 	}
 	
 	public void cancelFlight(int id) {
@@ -21,5 +39,11 @@ public class FlightController  {
 				break;
 			}
 		}
+	}
+	public static void main(String[] args) throws SQLException, ParseException {
+		FlightController fc = new FlightController();
+		System.out.println(fc.getAllFlights());
+		Flight flight = fc.getFlightById(2);
+		System.out.println(flight);
 	}
 }

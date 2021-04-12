@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Search {
 	
+	private List<Flight> searchFlightsResults;
+	
 	public static boolean validateText(String searchText) {	
 		
 		int x = (searchText.length());
@@ -16,8 +18,14 @@ public class Search {
 	}
 	
 	public List<Flight> returnMatches(String destination, String currentloc) throws SQLException, ParseException {
-		return QueryDB.selectFromDB(destination, currentloc);	
+		searchFlightsResults = QueryDB.selectFromDB(destination, currentloc);
+		return searchFlightsResults;	
 	}
+	
+	public List<Flight> getMatches() {
+		return this.searchFlightsResults;
+	}
+	
 	
 	public List<Flight> nullToEmpty(List<Flight> searchResult) {
 		boolean empty = searchResult.isEmpty();
@@ -28,11 +36,11 @@ public class Search {
 		}
 	}
 	
-	public static void checkReversedDate() {
+	public void checkReversedDate() {
 		
 	}
 	
-	public static void checkSameDate() {
+	public void checkSameDate() {
 		
 	}
 	
@@ -46,6 +54,7 @@ public class Search {
 		Search ts = new Search();
 		System.out.println(ts.nullToEmpty(fakeList));
 		
-		System.out.print(ts.returnMatches("Reykjavik", "Akureyri").toString());
+		System.out.print(ts.returnMatches("Akureyri", "Reykjavik").toString());
+		
 	}
 }
