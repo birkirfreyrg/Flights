@@ -2,14 +2,13 @@ package Flight;
 
 
 public class Booking {
-	private int id;
+	private int BookingID;
 	private Flight flight;
-	private int cost;
+	private int cost; 
 	private Passenger passenger;
-	private Boolean handicap;
 	
-	public int getID( ) { return id; }
-	public void setID(int newID ) { id = newID; }
+	public int getID( ) { return BookingID; }
+	public void setID(int newID ) { BookingID = newID; }
 	
 	public int getCost( ) { return cost; }
 	public void setCost(int newCost ) { cost = newCost; }
@@ -20,41 +19,33 @@ public class Booking {
 	public Passenger getpassenger( ) { return passenger; }
 	public void setpassenger(Passenger newpassenger ) { passenger= newpassenger; }
 	
-	public Boolean checkHandicap( ) { return handicap; }
-	public void setHandicap(Boolean handicapp ) { handicap = handicapp; }
-	
 	public String toString() {
-		String string = String.format("Booking id: %d\nFlight Info: %sPassenger: %sRequires handicap support: %b\n", id, flight, passenger, handicap);
+		String string = String.format("Booking id: %d\nFlight Info: %sPassenger: %sRequires handicap support: %b\n", BookingID, flight, passenger);
 		return string;
 	}
 	
 	Booking() {
-		id = -1;
+		BookingID = -1;
 		flight = new Flight();
 		passenger = new Passenger();
-		handicap = false;
 	}
 	
-	Booking(Flight newFlight, Passenger newpassenger, Boolean newHandicap){
-		id = -1;
+	Booking(Flight newFlight){
+		BookingID = -1;
 		flight = newFlight;
-		passenger = newpassenger;
-		newHandicap = handicap;
 	}
+	
 	Booking(Flight newFlight, Passenger newpassenger){
-		id = -1;
+		BookingID = -1;
 		flight = newFlight;
-		passenger = newpassenger;
-		handicap = false;
-				
+		passenger = newpassenger;		
 	}
 	
 	Booking(Flight newFlight, int newCost, Passenger newpassenger){
-		id = -1;
+		BookingID = -1;
 		flight = newFlight;
 		cost = newCost;
 		passenger = newpassenger;
-		handicap = false;
 				
 	}
 	public static void main(String args[]) {

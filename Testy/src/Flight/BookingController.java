@@ -46,7 +46,7 @@ public class BookingController {
 		// create fake data
 		PassengerController pc = new PassengerController();
 		Passenger fakePassenger = new Passenger("John", 27);
-		Booking bookingTest = new Booking(flight, fakePassenger , false);
+		Booking bookingTest = new Booking(flight, fakePassenger);
 		bc.createBooking(bookingTest);
 		
 		// return booking by id (-1)

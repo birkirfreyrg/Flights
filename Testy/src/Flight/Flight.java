@@ -6,7 +6,7 @@ import java.util.Date;
 public class Flight {
 
 	private int id;
-	private Plane plane;
+	private int seats;
 	private String destination;
 	private String currentLocation;
 	private Date departureTime;
@@ -15,8 +15,8 @@ public class Flight {
 	public int getID( ) { return id; }
 	public void setID(int newID ) { id = newID; }
 	
-	public Plane getPlane( ) { return plane; }
-	public void setPlane(Plane newPlane ) { plane = newPlane; }
+	public int getSeats( ) { return seats; }
+	public void setSeats(int newSeats ) { seats = newSeats; }
 	
 	public String getDestination( ) { return destination; }
 	public void setDestination(String newLoc ) { destination = newLoc; }
@@ -37,7 +37,7 @@ public class Flight {
 	
 	Flight() {
 		id = -1;
-		plane = new Plane();
+		seats = -1;
 		destination = "Þangað";
 		currentLocation = "Hérna";
 		departureTime = new Date(); // Date() = current date, time
@@ -46,7 +46,7 @@ public class Flight {
 	
 	Flight(Plane newPlane, String newDest, String newLoc, Date depTime, Date arrTime) {
 		id = -1;
-		plane = newPlane;
+		seats = -1;
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = depTime; // Date() = current date, time
@@ -55,7 +55,7 @@ public class Flight {
 	
 	Flight(String newDest, String newLoc, Date depTime, Date arrTime) {
 		id = -1;
-		plane = new Plane();
+		seats = -1;
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = depTime; // Date() = current date, time
@@ -64,7 +64,7 @@ public class Flight {
 	
 	Flight(String newDest, String newLoc, Date newDate) {
 		id = -1;
-		plane = new Plane();
+		seats = -1;
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = newDate; // Date() = current date, time
@@ -73,7 +73,7 @@ public class Flight {
 	
 	Flight(String newDest, String newLoc) {
 		id = -1;
-		plane = new Plane();
+		seats = -1;
 		destination = newDest;
 		currentLocation = newLoc;
 		departureTime = new Date(); // Date() = current date, time

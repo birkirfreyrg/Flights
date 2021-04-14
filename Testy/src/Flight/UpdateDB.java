@@ -117,7 +117,6 @@ public class UpdateDB {
         return return_id;
     }
     
-    /*
     public static int insertIntoBookingDB(Flight flight, int cost, Passenger passenger) throws SQLException {
     	// returns -1 if failed, otherwise returns id
         Connection con = null;
@@ -127,9 +126,9 @@ public class UpdateDB {
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         
         Statement st = con.createStatement();
-        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
+        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30), passenger varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Flight(destination, currentLoc, departureTime, arrivalTime) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"')";
+        String sqlInsertingValues = "INSERT INTO Bookings(flight, cost, passenger, arrivalTime) Values( '"+ flight +"', '"+ cost +"', '"+passenger+"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
@@ -143,15 +142,17 @@ public class UpdateDB {
             System.out.println("A row created");
         }
         
-        String checking = "SELECT * FROM User";
+        String checking = "SELECT * FROM Bookings";
+        
         ResultSet rs = st.executeQuery(checking);
         while(rs.next())
         {
         	int id = rs.getInt("id");
-            String name = rs.getString("name");
-            String email = rs.getString("email");
+            String name = rs.getString("flight");
+            String email = rs.getString("cost");
+            Passenger passenger = rs.getString("passenger");
 
-            System.out.println(id + " | " + name + " | " + email);
+            System.out.println(id + " | " + name + " | " + email + " | " + passenger);
         }
         rs.close();
         
@@ -173,7 +174,6 @@ public class UpdateDB {
         }  
         return return_id;
     }
-    */
     
     public static void deleteFromDB(String[]  wantDeleted, int identifier) throws SQLException {
         Connection con = null;
