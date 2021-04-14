@@ -117,7 +117,7 @@ public class UpdateDB {
         return return_id;
     }
     
-    public static int insertIntoBookingDB(Flight flight, int cost, Passenger passenger) throws SQLException {
+    public static int insertIntoBookingDB(Flight flight, int cost) throws SQLException {
     	// returns -1 if failed, otherwise returns id
         Connection con = null;
         int return_id = -1;
@@ -128,7 +128,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30), passenger varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Bookings(flight, cost, passenger, arrivalTime) Values( '"+ flight +"', '"+ cost +"', '"+passenger+"')";
+        String sqlInsertingValues = "INSERT INTO Bookings(flight, cost) Values( '"+ flight +"', '"+ cost +"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
@@ -148,11 +148,10 @@ public class UpdateDB {
         while(rs.next())
         {
         	int id = rs.getInt("id");
-            String name = rs.getString("flight");
-            String email = rs.getString("cost");
-            Passenger passenger = rs.getString("passenger");
+            String flight = rs.getString("flight");
+            String cost = rs.getString("cost");
 
-            System.out.println(id + " | " + name + " | " + email + " | " + passenger);
+            System.out.println(id + " | " + flight + " | " + cost);
         }
         rs.close();
         
