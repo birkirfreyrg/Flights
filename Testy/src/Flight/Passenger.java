@@ -16,6 +16,12 @@ public class Passenger {
 	
 	public int getId() {return this.id;}
 	
+	Passenger() {
+		id = -1;
+		name = "name";
+		age = 0;
+	}
+	
 	Passenger(String newName, int newAge) {
 		id = -1;
 		name = newName;

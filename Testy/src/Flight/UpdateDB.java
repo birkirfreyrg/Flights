@@ -117,6 +117,64 @@ public class UpdateDB {
         return return_id;
     }
     
+    /*
+    public static int insertIntoBookingDB(Flight flight, int cost, Passenger passenger) throws SQLException {
+    	// returns -1 if failed, otherwise returns id
+        Connection con = null;
+        int return_id = -1;
+        try {
+        Class.forName("org.sqlite.JDBC");
+        con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+        
+        Statement st = con.createStatement();
+        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
+        st.executeUpdate(sqlCreatingTable);
+        String sqlInsertingValues = "INSERT INTO Flight(destination, currentLoc, departureTime, arrivalTime) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"')";
+        PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
+        int rows = prsts.executeUpdate();
+        System.out.println("numbers of rows affected: "+rows);
+        ResultSet id_values = prsts.getGeneratedKeys();
+        if (id_values.next()) {
+        	return_id = id_values.getInt(1);
+        }
+        //int rows = st.executeUpdate(sqlInsertingValues);
+        
+        if (rows > 0) {
+            System.out.println("A row created");
+        }
+        
+        String checking = "SELECT * FROM User";
+        ResultSet rs = st.executeQuery(checking);
+        while(rs.next())
+        {
+        	int id = rs.getInt("id");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+
+            System.out.println(id + " | " + name + " | " + email);
+        }
+        rs.close();
+        
+        
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }  
+        return return_id;
+    }
+    */
+    
     public static void deleteFromDB(String[]  wantDeleted, int identifier) throws SQLException {
         Connection con = null;
         

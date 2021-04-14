@@ -43,9 +43,14 @@ public class BookingController {
 		allFlights = fc.getAllFlights();
 		Flight flight = fc.getFlightById(2);
 		System.out.println(flight);
-		Booking bookingTest = new Booking(flight, "John Doe", false);
+		// create fake data
+		PassengerController pc = new PassengerController();
+		Passenger fakePassenger = new Passenger("John", 27);
+		Booking bookingTest = new Booking(flight, fakePassenger , false);
 		bc.createBooking(bookingTest);
-		System.out.println(bc.getBookingById(0).toString());
+		
+		// return booking by id (-1)
+		System.out.println(bc.getBookingById(-1).toString());
 		//System.out.prtinln(gc.getBooking )
 	}
 
