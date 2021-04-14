@@ -53,6 +53,15 @@ public class Flight {
 		arrivalTime = arrTime;
 	}
 	
+	Flight(int seats, String newDest, String newLoc, Date depTime, Date arrTime) {
+		id = -1;
+		seats = -1;
+		destination = newDest;
+		currentLocation = newLoc;
+		departureTime = depTime; // Date() = current date, time
+		arrivalTime = arrTime;
+	}
+	
 	Flight(String newDest, String newLoc, Date depTime, Date arrTime) {
 		id = -1;
 		seats = -1;

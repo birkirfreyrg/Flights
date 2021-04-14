@@ -20,7 +20,7 @@ public class Booking {
 	public void setpassenger(Passenger newpassenger ) { passenger= newpassenger; }
 	
 	public String toString() {
-		String string = String.format("Booking id: %d\nFlight Info: %sPassenger: %sRequires handicap support: %b\n", BookingID, flight, passenger);
+		String string = String.format("Booking id: %d\nFlight Info: %sPassenger: %sRequires\n", BookingID, flight, passenger);
 		return string;
 	}
 	
@@ -33,11 +33,14 @@ public class Booking {
 	Booking(Flight newFlight){
 		BookingID = -1;
 		flight = newFlight;
+		cost = 0;
+		passenger = new Passenger();
 	}
 	
 	Booking(Flight newFlight, Passenger newpassenger){
 		BookingID = -1;
 		flight = newFlight;
+		cost = 0;
 		passenger = newpassenger;		
 	}
 	
@@ -47,6 +50,13 @@ public class Booking {
 		cost = newCost;
 		passenger = newpassenger;
 				
+	}
+	
+	Booking(Flight newFlight, int newCost) {
+		BookingID = -1;
+		flight = newFlight;
+		cost = newCost;
+		passenger = new Passenger();
 	}
 	public static void main(String args[]) {
 		Booking book = new Booking();

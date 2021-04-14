@@ -117,7 +117,7 @@ public class UpdateDB {
         return return_id;
     }
     
-    public static int insertIntoBookingDB(Flight flight, int cost) throws SQLException {
+    public static int insertIntoBookingDB(Booking booking) throws SQLException {
     	// returns -1 if failed, otherwise returns id
         Connection con = null;
         int return_id = -1;
@@ -126,9 +126,9 @@ public class UpdateDB {
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         
         Statement st = con.createStatement();
-        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30), passenger varchar(30))";
+        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Bookings(flight, cost) Values( '"+ flight +"', '"+ cost +"')";
+        String sqlInsertingValues = "INSERT INTO Bookings(id, flight, cost) Values( '"+ booking.getID() +"', '"+ booking.getFlight() +"', '"+ booking.getCost() +"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
@@ -137,7 +137,7 @@ public class UpdateDB {
         	return_id = id_values.getInt(1);
         }
         //int rows = st.executeUpdate(sqlInsertingValues);
-        
+        /*
         if (rows > 0) {
             System.out.println("A row created");
         }
@@ -149,12 +149,12 @@ public class UpdateDB {
         {
         	int id = rs.getInt("id");
             String flight = rs.getString("flight");
-            String cost = rs.getString("cost");
+            int cost = rs.getString("cost");
 
             System.out.println(id + " | " + flight + " | " + cost);
         }
         rs.close();
-        
+        */
         
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
@@ -338,14 +338,18 @@ public class UpdateDB {
     public static void main(String[] args) throws SQLException{
         
         // insertIntoFlightDB(String currentLoc, String destination, Date departureTime, Date arrivalTime)
+    	
     	Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
 	    calendar.setTime(date);
 	    calendar.add(Calendar.HOUR_OF_DAY, 1);
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
-    	insertIntoFlightDB("Akureyri", "Reykjavik", date, dateArrival);
-        
+	    Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
+    	//insertIntoFlightDB("Akureyri", "Reykjavik", date, dateArrival); 	
+    	
+    	Booking booking = new Booking(flight, 10000);
+        insertIntoBookingDB(booking);
     }
     
 }
