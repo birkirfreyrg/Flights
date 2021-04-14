@@ -128,7 +128,7 @@ public class UpdateDB {
         Statement st = con.createStatement();
         String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Bookings(id INTEGER PRIMARY KEY, flight varchar(30), cost varchar(30))";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Bookings(id, flight, cost) Values( '"+ booking.getID() +"', '"+ booking.getFlight() +"', '"+ booking.getCost() +"')";
+        String sqlInsertingValues = "INSERT INTO Bookings(flight, cost) Values( '"+ booking.getFlight() +"', '"+ booking.getCost() +"')";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
