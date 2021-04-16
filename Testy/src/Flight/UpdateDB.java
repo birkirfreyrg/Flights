@@ -276,6 +276,35 @@ public class UpdateDB {
         }        
     }
     
+    public static void deletFlightDB() throws SQLException {
+        Connection con = null;
+        
+        try {
+        Class.forName("org.sqlite.JDBC");
+        con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+        Statement st = con.createStatement();
+        String sqlDeleting = "DELETE FROM Flight";
+        String sqlVacuum = "VACUUM";
+        st.executeUpdate(sqlDeleting);
+        st.executeUpdate(sqlVacuum);
+        System.out.println("FlightsDB was deleted.");
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }        
+    }
+    
     public static void updateDB(int identifier, String oldName, String oldEmail, String newName, String newEmail) throws SQLException{
     	Connection con = null;
     	try {
