@@ -39,7 +39,8 @@ public class InitializeFlightDB {
 	}
 
 	public static void main(String[] args) throws SQLException {
-	
+		InitializeFlightDB ifdb = new InitializeFlightDB();
+		ifdb.initializeFlightDB();
 	}
 
 }
