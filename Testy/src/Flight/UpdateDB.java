@@ -342,14 +342,27 @@ public class UpdateDB {
     	Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
 	    calendar.setTime(date);
-	    calendar.add(Calendar.HOUR_OF_DAY, 1);
+	    calendar.add(Calendar.DAY_OF_MONTH, 7);
 	    Date dateArrival = new Date();
 	    dateArrival = calendar.getTime();
-	    Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
+	    calendar.setTime(date);
+	    calendar.add(calendar.DAY_OF_MONTH, 3);
+	    Date dateInbetween = new Date();
+	    dateInbetween = calendar.getTime();
+	    /*Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
     	//insertIntoFlightDB("Akureyri", "Reykjavik", date, dateArrival); 	
     	
     	Booking booking = new Booking(flight, 10000);
         insertIntoBookingDB(booking);
+        */
+	    System.out.println(date);
+	    System.out.println(dateInbetween);
+	    System.out.println(dateArrival);
+	    if(!dateInbetween.before(date) && !dateInbetween.after(dateArrival)) {
+	    	System.out.println("Date is inside the date searched");
+	    }else {
+	    	System.out.println("Date is not inside the date searched");
+	    }
     }
     
 }
