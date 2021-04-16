@@ -35,6 +35,12 @@ public class Flight {
 		return string;
 	}
 	
+	public void book(int n) {
+		Booking myBooking = new Booking(this, n);
+		BookingController BC = new BookingController();
+		BC.createBooking(myBooking);
+	}
+	
 	Flight() {
 		id = -1;
 		seats = -1;
