@@ -358,7 +358,7 @@ public class UpdateDB {
 	    calendar.add(calendar.DAY_OF_MONTH, 3);
 	    Date dateInbetween = new Date();
 	    dateInbetween = calendar.getTime();
-	    Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
+	    Flight flight = new Flight("Akureyri", "Reykjavik", date, dateArrival);
     	//insertIntoFlightDB("Akureyri", "Reykjavik", date, dateArrival); 	
     	
     	Booking booking = new Booking(flight, 10000);
@@ -372,7 +372,7 @@ public class UpdateDB {
 	    }else {
 	    	System.out.println("Date is not inside the date searched");
 	    }
-	    updateSeatDB(12, -3);
+	    updateSeatDB(28, -3);
     }
     
 }

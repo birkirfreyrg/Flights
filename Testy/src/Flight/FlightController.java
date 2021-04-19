@@ -54,13 +54,17 @@ public class FlightController  {
 	public static void main(String[] args) throws SQLException, ParseException {
 		FlightController fc = new FlightController();
 		Search sc = new Search();
-		
+		/*
 		// get all available flights from DB and select one of them from id.
 		System.out.println(fc.getAllFlights());
 		Flight flight = fc.getFlightById(2);
 		System.out.println(flight);
 		
 		// return flights searched with destination and current location.
-		System.out.println(sc.returnMatches("Reykjavik", "Akureyri"));
+		System.out.println(sc.returnMatches("Reykjavík", "Akureyri"));
+		*/
+		
+		System.out.println(fc.availableFlight(28, 48));
+		
 	}
 }
