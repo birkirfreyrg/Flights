@@ -22,15 +22,14 @@ public class FlightController  {
 		flights.add(newflight);
 	}
 	
-	public boolean availableFlight(Flight flight, int passengers) {
-		int seatsAvailable = flight.getSeats();
+	public boolean availableFlight(int id, int passengers) throws SQLException, ParseException {
+		int seatsAvailable = QueryDB.selectSeatsFromDB(id);
 		boolean available = false;
 		if(seatsAvailable >= passengers) {
 			available = true;
 		}else {
 			available = false;
 		}
-		
 		return available;
 	}
 	

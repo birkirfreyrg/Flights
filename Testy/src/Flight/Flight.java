@@ -55,16 +55,6 @@ public class Flight {
 		arrivalTime = new Date();
 	}
 	
-	Flight(Plane newPlane, String newDest, String newLoc, Date depTime, Date arrTime) {
-		id = -1;
-		cost = 0;
-		seats = -1;
-		destination = newDest;
-		currentLocation = newLoc;
-		departureTime = depTime; // Date() = current date, time
-		arrivalTime = arrTime;
-	}
-	
 	Flight(int newCost, int newSeats, String newDest, String newLoc, Date depTime, Date arrTime) {
 		id = -1;
 		cost = newCost;
