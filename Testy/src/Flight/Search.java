@@ -41,6 +41,16 @@ public class Search {
 		}
 	}
 	
+	public List<Flight> sortByDate(List<Flight> searchResult) {
+		
+		return searchResult;	
+	}
+	
+	public List<Flight> sortByName(List<Flight> searchResult) {
+		
+		return searchResult;	
+	}
+	
 	public void checkReversedDate() {
 		
 	}
@@ -60,7 +70,7 @@ public class Search {
 		System.out.println(ts.nullToEmpty(fakeList));
 		
 		//System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
-		fakeList = ts.returnMatches("Akureyri", "Reykjavík");
+		fakeList = ts.getAllFlights();
 		System.out.print(fakeList.toString());
 	}
 }
