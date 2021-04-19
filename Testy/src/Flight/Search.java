@@ -27,6 +27,13 @@ public class Search {
 		return searchFlightsResults;	
 	}
 	
+	public List<Flight> getRoundTrip(String destination, String currentLoc, Date startDate, Date endDate) {
+		searchFlightsResults = QueryDB.selectFromDBByDate(destination, currentLoc, startDate);
+		List<Flight> tempResultList = QueryDB.selectFromDBByDate(currentLoc, destination, endDate);
+		searchFlightsResults.addAll(tempResultList);
+		return searchFlightsResults;
+	}
+	
 	public List<Flight> getMatches() {
 		return this.searchFlightsResults;
 	}
