@@ -27,7 +27,7 @@ public class Search {
 		return searchFlightsResults;	
 	}
 	
-	public List<Flight> getRoundTrip(String destination, String currentLoc, Date startDate, Date endDate) {
+	public List<Flight> getRoundTrip(String destination, String currentLoc, Date startDate, Date endDate) throws SQLException, ParseException {
 		searchFlightsResults = QueryDB.selectFromDBByDate(destination, currentLoc, startDate);
 		List<Flight> tempResultList = QueryDB.selectFromDBByDate(currentLoc, destination, endDate);
 		searchFlightsResults.addAll(tempResultList);
@@ -67,17 +67,20 @@ public class Search {
 	}
 	
 	public static void main(String[] args) throws SQLException, ParseException {
+		/*
 		boolean thepriceisright = validateText("H�navatnas�sla");
 		System.out.println(thepriceisright);
-		
+		*/
 		List<Flight> fakeList = new ArrayList<Flight>();
 		//Flight fakeFlightData = new Flight("Ak", "rvk");
 		//fakeList.add(fakeFlightData);
 		Search ts = new Search();
-		System.out.println(ts.nullToEmpty(fakeList));
-	
-		System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
+		//System.out.println(ts.nullToEmpty(fakeList));
+		//System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
 		fakeList = ts.getAllFlights();
-		System.out.print(fakeList.toString());
+		//System.out.print(fakeList.toString());
+		
+		System.out.println(getRoundTrip("Akureyri", "Reykjavík", ));
+		
 	}
 }
