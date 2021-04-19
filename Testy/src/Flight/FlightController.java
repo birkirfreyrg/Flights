@@ -22,6 +22,18 @@ public class FlightController  {
 		flights.add(newflight);
 	}
 	
+	public boolean availableFlight(Flight flight, int passengers) {
+		int seatsAvailable = flight.getSeats();
+		boolean available = false;
+		if(seatsAvailable >= passengers) {
+			available = true;
+		}else {
+			available = false;
+		}
+		
+		return available;
+	}
+	
 	public Flight getFlightById(int id) {
 		for (Flight flight : flights) {
 			if (flight.getID() == id) {

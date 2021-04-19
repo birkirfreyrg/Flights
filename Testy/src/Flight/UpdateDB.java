@@ -378,12 +378,12 @@ public class UpdateDB {
 	    calendar.add(calendar.DAY_OF_MONTH, 3);
 	    Date dateInbetween = new Date();
 	    dateInbetween = calendar.getTime();
-	    /*Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
+	    Flight flight = new Flight(24, "Akureyri", "Reykjavik", date, dateArrival );
     	//insertIntoFlightDB("Akureyri", "Reykjavik", date, dateArrival); 	
     	
     	Booking booking = new Booking(flight, 10000);
         insertIntoBookingDB(booking);
-        */
+       
 	    System.out.println(date);
 	    System.out.println(dateInbetween);
 	    System.out.println(dateArrival);
