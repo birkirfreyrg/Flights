@@ -61,7 +61,7 @@ public class UpdateDB {
         return return_id;
     }
     
-    public static int insertIntoFlightDB(String destination, String currentLoc, Date departureTime, Date arrivalTime) throws SQLException {
+    public static int insertIntoFlightDB(String destination, String currentLoc, Date departureTime, Date arrivalTime, int cost) throws SQLException {
     	// returns -1 if failed, otherwise returns id
         Connection con = null;
         int return_id = -1;
@@ -70,9 +70,9 @@ public class UpdateDB {
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         
         Statement st = con.createStatement();
-        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS Flight(id INTEGER PRIMARY KEY, destination varchar(30), currentLoc varchar(30), departureTime varchar(30), arrivalTime varchar(30))";
+        String sqlCreatingTable = "CREATE TABLE IF NOT EXISTS FlightTable(id INTEGER PRIMARY KEY, destination varchar(30), currentLoc varchar(30), departureTime varchar(30), arrivalTime varchar(30), cost INTEGER, seat INTEGER)";
         st.executeUpdate(sqlCreatingTable);
-        String sqlInsertingValues = "INSERT INTO Flight(destination, currentLoc, departureTime, arrivalTime) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"')";
+        String sqlInsertingValues = "INSERT INTO FlightTable(destination, currentLoc, departureTime, arrivalTime, cost, seat) Values( '"+ destination +"', '"+ currentLoc +"', '"+departureTime+"', '"+arrivalTime+"', "+cost+", 50)";
         PreparedStatement prsts = con.prepareStatement(sqlInsertingValues, Statement.RETURN_GENERATED_KEYS);
         int rows = prsts.executeUpdate();
         System.out.println("numbers of rows affected: "+rows);
@@ -248,7 +248,7 @@ public class UpdateDB {
         while(rsID.next()) {
         	int id = rsID.getInt("id");
         	if (id == identifier) {
-                	String sqlDeleting = "DELETE FROM Flight WHERE id = '"+identifier+"'";
+                	String sqlDeleting = "DELETE FROM FlightTable WHERE id = '"+identifier+"'";
                     st.executeUpdate(sqlDeleting);
                     System.out.println(identifier + " was deleted.");
                 }
@@ -283,7 +283,7 @@ public class UpdateDB {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st = con.createStatement();
-        String sqlDeleting = "DELETE FROM Flight";
+        String sqlDeleting = "DELETE FROM FlightTable";
         String sqlVacuum = "VACUUM";
         st.executeUpdate(sqlDeleting);
         st.executeUpdate(sqlVacuum);
