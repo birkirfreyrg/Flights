@@ -11,7 +11,6 @@ public class FlightController  {
 	private List<Flight> flights = new ArrayList<Flight>();
 	
 	public List<Flight> getFlights() { return flights; } 
-	//public void setFlights(Flight[] newflights) { flights = newflights; }
 	
 	public List<Flight> getAllFlights() throws SQLException, ParseException {
 		flights = QueryDB.selectAllFlightsFromDB();
@@ -43,10 +42,10 @@ public class FlightController  {
 		return null;
 	}
 	
-	public void cancelFlight(int id) {
+	public void cancelFlight(int id) throws SQLException {
 		for (Flight flight : flights) {
 			if (flight.getID() == id) {
-				flights.remove(flight);
+				UpdateDB.deleteFromFlightDB(id);
 				break;
 			}
 		}
@@ -64,7 +63,7 @@ public class FlightController  {
 		System.out.println(sc.returnMatches("Reykjavík", "Akureyri"));
 		*/
 		
-		System.out.println(fc.availableFlight(28, 48));
+		System.out.println(fc.availableFlight(28, 20));
 		
 	}
 }
