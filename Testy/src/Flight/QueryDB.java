@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Date;
+import java.util.Calendar;
 
 public class QueryDB {
 	public static List<Flight> selectAllFlightsFromDB() throws SQLException, ParseException {
@@ -159,7 +160,14 @@ public class QueryDB {
             String arrivalTime = rs.getString("arrivalTime");
             Date DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(departureTime);
             Date AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(arrivalTime);
-
+            Calendar mydate = Calendar.getInstance();
+            Calendar sqldate = Calendar.getInstance();
+            sqldate.setTime(DT);
+            mydate.setTime(date);
+            if(sqldate.get(Calendar.DAY_OF_YEAR) == mydate.get(Calendar.DAY_OF_YEAR)) {
+            	// do something
+            }
+            
             if(!DT.before(date) && !DT.after(date)) {
             	Flight f = new Flight(rs.getInt("cost"), rs.getInt("seat"),rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
                 f.setID(rs.getInt("id"));
