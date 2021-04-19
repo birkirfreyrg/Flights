@@ -276,7 +276,7 @@ public class UpdateDB {
         }        
     }
     
-    public static void deletFlightDB() throws SQLException {
+    public static void deleteFlightDB() throws SQLException {
         Connection con = null;
         
         try {

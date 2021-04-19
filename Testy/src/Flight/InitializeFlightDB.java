@@ -18,7 +18,7 @@ public class InitializeFlightDB {
 		}
 	
 	public void initializeFlightDB() throws SQLException {
-		UpdateDB.deletFlightDB();
+		UpdateDB.deleteFlightDB();
 		InitializeFlightDB ifdb = new InitializeFlightDB();
 		ifdb.createFlightInDB("Ólafsvík", "Reykjavík", "Fri Apr 02 20:00:00 GMT 2021", 9000);
 		ifdb.createFlightInDB("Reykjavík", "Ólafsvík", "Fri Apr 02 22:00:00 GMT 2021", 9000);
