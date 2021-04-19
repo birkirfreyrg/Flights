@@ -143,7 +143,7 @@ public class QueryDB {
         
     }
 	
-	public static List<Flight> selectFromByDateDB(String destination, String currentLoc, Date date) throws SQLException, ParseException {
+	public static List<Flight> selectFromDBByDate(String destination, String currentLoc, Date date) throws SQLException, ParseException {
         Connection con = null;
         List<Flight> flightList = new ArrayList<Flight>();
         try {
@@ -250,7 +250,7 @@ public static void main(String[] args) throws SQLException, ParseException{
 	
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromByDateDB("Reykjavík", "Akureyri", dateFrom);
+	flightList = selectFromDBByDate("Reykjavík", "Akureyri", dateFrom);
 	System.out.print(flightList);
 	System.out.println(selectSeatsFromDB(12));
 	
