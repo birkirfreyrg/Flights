@@ -141,6 +141,52 @@ public class QueryDB {
         return flightList;
         
     }
+	
+	public static List<Flight> selectFromByDateDB(String destination, String currentLoc, Date date) throws SQLException, ParseException {
+        Connection con = null;
+        List<Flight> flightList = new ArrayList<Flight>();
+        try {
+        Class.forName("org.sqlite.JDBC");
+        con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+        Statement st2 = con.createStatement();
+        String scanning = "SELECT * FROM FlightTable WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
+        ResultSet rs = st2.executeQuery(scanning);
+        if (!rs.isBeforeFirst() ) {    
+            System.out.println("Could not find flight"); 
+        } 
+        while(rs.next()) {
+            String departureTime = rs.getString("departureTime");
+            String arrivalTime = rs.getString("arrivalTime");
+            Date DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(departureTime);
+            Date AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(arrivalTime);
+
+            if(!DT.before(date) && !DT.after(date)) {
+            	Flight f = new Flight(rs.getInt("cost"), rs.getInt("seat"),rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
+                f.setID(rs.getInt("id"));
+                flightList.add(f);
+            }
+        }
+        rs.close();
+        
+        
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }    
+        return flightList;
+        
+    }
 	public static int selectSeatsFromDB(int identifier) throws SQLException, ParseException {
         Connection con = null;
         int seatsLeft =-1;
@@ -199,7 +245,7 @@ public static void main(String[] args) throws SQLException, ParseException{
 	
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromDB("Reykjavík", "Akureyri", dateFrom, dateTo);
+	flightList = selectFromByDateDB("Reykjavík", "Akureyri", dateFrom);
 	System.out.print(flightList);
 	System.out.println(selectSeatsFromDB(12));
 	
