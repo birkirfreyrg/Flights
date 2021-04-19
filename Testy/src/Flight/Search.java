@@ -68,8 +68,8 @@ public class Search {
 		//fakeList.add(fakeFlightData);
 		Search ts = new Search();
 		System.out.println(ts.nullToEmpty(fakeList));
-		
-		//System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
+	
+		System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
 		fakeList = ts.getAllFlights();
 		System.out.print(fakeList.toString());
 	}
