@@ -16,7 +16,7 @@ public class QueryDB {
 	     Class.forName("org.sqlite.JDBC");
 	     con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
 	     Statement st2 = con.createStatement();
-	     String scanning = "SELECT * FROM Flight";
+	     String scanning = "SELECT * FROM FlightTable";
 	     ResultSet rs = st2.executeQuery(scanning);
 	     if (!rs.isBeforeFirst() ) {    
 	         System.out.println("No flights available"); 
@@ -59,7 +59,7 @@ public class QueryDB {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st2 = con.createStatement();
-        String scanning = "SELECT * FROM Flight WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
+        String scanning = "SELECT * FROM FlightTable WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
         ResultSet rs = st2.executeQuery(scanning);
         if (!rs.isBeforeFirst() ) {    
             System.out.println("Could not find flight"); 
@@ -70,7 +70,7 @@ public class QueryDB {
             Date DT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(departureTime);
             Date AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(arrivalTime);
 
-            Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
+            Flight f = new Flight(rs.getInt("cost"), rs.getInt("seat"),rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
             f.setID(rs.getInt("id"));
             flightList.add(f);
         }
@@ -103,7 +103,7 @@ public class QueryDB {
         Class.forName("org.sqlite.JDBC");
         con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
         Statement st2 = con.createStatement();
-        String scanning = "SELECT * FROM Flight WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
+        String scanning = "SELECT * FROM FlightTable WHERE destination = '"+ destination +"' AND currentLoc = '"+ currentLoc + "'";
         ResultSet rs = st2.executeQuery(scanning);
         if (!rs.isBeforeFirst() ) {    
             System.out.println("Could not find flight"); 
@@ -115,7 +115,7 @@ public class QueryDB {
             Date AT = (Date) new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",Locale.ENGLISH).parse(arrivalTime);
 
             if(!DT.before(dateFrom) && !DT.after(dateTo)) {
-            	Flight f = new Flight(rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
+            	Flight f = new Flight(rs.getInt("cost"), rs.getInt("seat"),rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
                 f.setID(rs.getInt("id"));
                 flightList.add(f);
             }
@@ -161,7 +161,7 @@ public static void main(String[] args) throws SQLException, ParseException{
 	
 	
 	List<Flight> flightList = new ArrayList<Flight>();
-	flightList = selectFromDB("Reykjavik", "Akureyri", dateFrom, dateTo);
+	flightList = selectFromDB("Reykjavík", "Akureyri", dateFrom, dateTo);
 	System.out.print(flightList);
 	
 }
