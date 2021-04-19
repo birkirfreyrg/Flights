@@ -305,14 +305,13 @@ public class UpdateDB {
         }        
     }
     
-    public static void updateDB(int identifier, String oldName, String oldEmail, String newName, String newEmail) throws SQLException{
+    public static void updateSeatDB(int identifier, int seatChange) throws SQLException{
     	Connection con = null;
     	try {
     		Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
             Statement st = con.createStatement();
-            String actualName = ""; String actualEmail = "";
-            String sqlCheckingID = "SELECT * FROM User";
+            String sqlCheckingID = "SELECT * FROM FlightTable";
             ResultSet rsID = st.executeQuery(sqlCheckingID);
             if (!rsID.isBeforeFirst() ) {    
                 System.out.println("No data"); 
@@ -320,31 +319,12 @@ public class UpdateDB {
             while(rsID.next()) {
             	int id = rsID.getInt("id");
             	if (id == identifier) {
-            		actualName = rsID.getString("name");
-                    actualEmail = rsID.getString("email");
-                    if(actualName.equals(oldName) && actualEmail.equals(oldEmail)) {
-                    	String sqlDeleting = "UPDATE User SET name = '" + newName + "', email = '"+newEmail+"' WHERE id = "+ identifier;
-                        st.executeUpdate(sqlDeleting);
-                        System.out.println(oldName +" was changed to "+newName+ " and the "+oldEmail+" was changed to "+newEmail);
-                    }
-            	}
-            	else {
-            		System.out.println("User doesnt exist");
+                    String sqlDeleting = "UPDATE FlightTable SET seat = seat + "+seatChange+" WHERE id = "+ identifier;
+                    st.executeUpdate(sqlDeleting);
             	}
             }
-            String checking = "SELECT * FROM User";
-            ResultSet rs = st.executeQuery(checking);
-            while(rs.next())
-            {
-            	int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-
-                System.out.println(id + " | " + name + " | " + email);
-            }
-
             // comment
-            rs.close();
+            rsID.close();
         }catch (ClassNotFoundException | SQLException e) {
             System.out.println("ClassNotFound & SQL Exception; "+e);
         } finally
@@ -392,6 +372,7 @@ public class UpdateDB {
 	    }else {
 	    	System.out.println("Date is not inside the date searched");
 	    }
+	    updateSeatDB(12, -3);
     }
     
 }
