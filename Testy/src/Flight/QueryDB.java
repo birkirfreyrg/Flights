@@ -165,14 +165,11 @@ public class QueryDB {
             sqldate.setTime(DT);
             mydate.setTime(date);
             if(sqldate.get(Calendar.DAY_OF_YEAR) == mydate.get(Calendar.DAY_OF_YEAR)) {
-            	// do something
-            }
-            
-            if(!DT.before(date) && !DT.after(date)) {
             	Flight f = new Flight(rs.getInt("cost"), rs.getInt("seat"),rs.getString("destination"),rs.getString("currentLoc"), DT, AT);
                 f.setID(rs.getInt("id"));
                 flightList.add(f);
             }
+            
         }
         rs.close();
         
