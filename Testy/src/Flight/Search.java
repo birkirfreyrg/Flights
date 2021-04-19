@@ -17,6 +17,11 @@ public class Search {
 		return true;
 	}
 	
+	public List<Flight> getAllFlights() throws SQLException, ParseException {
+		searchFlightsResults = QueryDB.selectAllFlightsFromDB();
+		return searchFlightsResults;
+	}
+	
 	public List<Flight> returnMatches(String destination, String currentloc) throws SQLException, ParseException {
 		searchFlightsResults = QueryDB.selectFromDB(destination, currentloc);
 		return searchFlightsResults;	
@@ -54,7 +59,8 @@ public class Search {
 		Search ts = new Search();
 		System.out.println(ts.nullToEmpty(fakeList));
 		
-		System.out.print(ts.returnMatches("Akureyri", "Reykjavik").toString());
-		
+		//System.out.print(ts.returnMatches("Akureyri", "Reykjavík").toString());
+		fakeList = ts.returnMatches("Akureyri", "Reykjavík");
+		System.out.print(fakeList.toString());
 	}
 }
