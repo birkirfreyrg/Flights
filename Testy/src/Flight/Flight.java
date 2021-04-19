@@ -19,6 +19,9 @@ public class Flight {
 	public int getSeats( ) { return seats; }
 	public void setSeats(int newSeats ) { seats = newSeats; }
 	
+	public int getCost() { return cost;}
+	public void setCost(int newCost) {cost = newCost;}
+	
 	public String getDestination( ) { return destination; }
 	public void setDestination(String newLoc ) { destination = newLoc; }
 	
