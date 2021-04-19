@@ -141,6 +141,44 @@ public class QueryDB {
         return flightList;
         
     }
+	public static int selectSeatsFromDB(int identifier) throws SQLException, ParseException {
+        Connection con = null;
+        int seatsLeft =-1;
+        try {
+        Class.forName("org.sqlite.JDBC");
+        con = DriverManager.getConnection("jdbc:sqlite:flightsdb.db");
+        Statement st2 = con.createStatement();
+        String scanning = "SELECT * FROM FlightTable WHERE id = '"+ identifier +"' ";
+        ResultSet rs = st2.executeQuery(scanning);
+        if (!rs.isBeforeFirst() ) {    
+            System.out.println("Could not find flight"); 
+        } 
+        while(rs.next()) {
+            seatsLeft = rs.getInt("seat");
+            }
+        
+        rs.close();
+        
+        
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("ClassNotFound & SQL Exception; "+e);
+        } finally
+        {
+            try
+              {
+                if(con != null)
+                  con.close();
+              }
+              catch(SQLException e)
+              {
+                // connection close failed.
+                System.err.println("error closing database; "+e);
+              }
+        }    
+        return seatsLeft;
+        
+    }
+	
 
 public static void main(String[] args) throws SQLException, ParseException{
 	
@@ -163,6 +201,7 @@ public static void main(String[] args) throws SQLException, ParseException{
 	List<Flight> flightList = new ArrayList<Flight>();
 	flightList = selectFromDB("Reykjavík", "Akureyri", dateFrom, dateTo);
 	System.out.print(flightList);
+	System.out.println(selectSeatsFromDB(12));
 	
 }
 
